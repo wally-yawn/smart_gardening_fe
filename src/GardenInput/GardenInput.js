@@ -16,25 +16,6 @@ function GardenInput() {
       <h1>Input Garden Info</h1>
       <form class="garden-form">
         <div class="form-row">
-
-        <label>
-            Garden Name:
-            <input
-              type="text"
-              placeholder="Garden Name"
-              value={gardenInfo.name}
-            />
-          </label>
-          <br />
-          <label>
-            Soil Type:
-            <input 
-            type="text"
-            placeholder="Soil Type"
-            value={gardenInfo.soil_type}
-            />
-          </label>
-          <br/>
           <label>
             Zipcode:
             <input
@@ -43,37 +24,66 @@ function GardenInput() {
               value={gardenInfo.zipcode}
             />
           </label>
+
+        <label>
+            Garden Name:
+            <select name="name" value={gardenInfo.name}>
+              <option value="">Select a Garden Name</option>
+              <option value="Herb Garden">Herb Garden</option>
+              <option value="Vegetable Garden">Vegetable Garden</option>
+              <option value="Flower Garden">Flower Garden</option>
+              <option value="Mixed Garden">Mixed Garden</option>
+            </select>
+          </label>
+         
+          <label>
+            Soil Type:
+            <select name="soil_type" value={gardenInfo.soil_type}>
+              <option value="">Select Soil Type</option>
+              <option value="Clay">Clay</option>
+              <option value="Sandy">Sandy</option>
+              <option value="Loamy">Loamy</option>
+              <option value="Peaty">Peaty</option>
+              <option value="Silty">Silty</option>
+              <option value="Chalky">Chalky</option>
+            </select>
+          </label>
+          
         </div>
-          <br />
+         
         <div class="form-row">
 
           <label>
             Sunlight:
-            <input
-              type="text"
-              placeholder="Sunlight"
-              value={gardenInfo.sunlight}
-            />
+            <select name="sunlight" value={gardenInfo.sunlight}>
+              <option value="">Select Sunlight</option>
+              <option value="Full Sun">Full Sun</option>
+              <option value="Partial Sun">Partial Sun</option>
+              <option value="Shade">Shade</option>
+            </select>
           </label>
-          <br />
+          
           <label>
             Water Needs:
-            <input
-              type="text"
-              placeholder="Water Needs"
-              value={gardenInfo.water_needs}
-            />
+            <select name="water_needs" value={gardenInfo.water_needs}>
+              <option value="">Select Water Needs</option>
+              <option value="Low">Low</option>
+              <option value="Moderate">Moderate</option>
+              <option value="High">High</option>
+            </select>
           </label>
-          <br />
+        
           <label>
             Purpose:
-            <input
-              type="text"
-              placeholder="Purpose"
-              value={gardenInfo.purpose}
-            />
+            <select name="purpose" value={gardenInfo.purpose}>
+              <option value="">Select Purpose</option>
+              <option value="Aesthetic">Aesthetic</option>
+              <option value="Food Production">Food Production</option>
+              <option value="Medicinal">Medicinal</option>
+              <option value="Recreation">Recreation</option>
+            </select>
           </label>
-          <br />
+         
         </div>
           <button type="submit">Search</button>
       </form>

@@ -41,6 +41,14 @@ input{
   border-radius: 5px;
   box-sizing: border-box;
 } 
+select{
+  width: 90%;
+  padding: 10px;
+  margin: 20px;
+  border-radius: 5px;
+  box-sizing: border-box;
+
+}
 
 button {
   padding: 12px 20px;
