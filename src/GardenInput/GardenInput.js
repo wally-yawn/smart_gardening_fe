@@ -4,7 +4,7 @@ import React, { useState } from 'react';
 function GardenInput() {
   const [gardenInfo, setGardenInfo] = useState({
     name: '',
-    hardiness_zone: '',
+    zipcode: '',
     sunlight: '',
     soil_type: '',
     water_needs: '',
@@ -32,10 +32,10 @@ function GardenInput() {
         </label>
         <br/>
         <label>
-          Hardiness Zone:
+          Zipcode:
           <input
             type="text"
-            value={gardenInfo.hardiness_zone}
+            value={gardenInfo.zipcode}
           />
         </label>
         <br />
