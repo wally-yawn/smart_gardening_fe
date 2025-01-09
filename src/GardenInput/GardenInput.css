@@ -1,7 +1,19 @@
-section {
-  color: white;
+.garden-form-section {
+  padding: 20px;
+  border: 1px solid #ccc;
+  background-color: tan ;
+  border-radius: 5px;
+}
+
+.garden-form {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form-row {
+  display: flex;
   background-color: tan;
-  border-radius: 10px ;
 
 }
 h1 {
@@ -11,14 +23,12 @@ h1 {
 }
 
 div {
-  max-width: 500px;
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 8px;
 } 
 
 label {
-  display: block;
   font-size: 1.5em;
   margin-bottom: 5px;
   margin-top: 15px;

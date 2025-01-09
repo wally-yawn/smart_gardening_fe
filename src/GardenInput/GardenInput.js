@@ -12,58 +12,70 @@ function GardenInput() {
   });
 
   return (
-    <section>
+    <section class="garden-form-section">
       <h1>Input Garden Info</h1>
-      <form>
-      <label>
-          Garden Name:
-          <input
-            type="text"
-            value={gardenInfo.name}
-          />
-        </label>
-        <br />
+      <form class="garden-form">
+        <div class="form-row">
+
         <label>
-          Soil Type:
-          <input 
-          type="text"
-          value={gardenInfo.soil_type}
-          />
-        </label>
-        <br/>
-        <label>
-          Zipcode:
-          <input
+            Garden Name:
+            <input
+              type="text"
+              placeholder="Garden Name"
+              value={gardenInfo.name}
+            />
+          </label>
+          <br />
+          <label>
+            Soil Type:
+            <input 
             type="text"
-            value={gardenInfo.zipcode}
-          />
-        </label>
-        <br />
-        <label>
-          Sunlight:
-          <input
-            type="text"
-            value={gardenInfo.sunlight}
-          />
-        </label>
-        <br />
-        <label>
-          Water Needs:
-          <input
-            type="text"
-            value={gardenInfo.water_needs}
-          />
-        </label>
-        <br />
-        <label>
-          Purpose:
-          <input
-            type="text"
-            value={gardenInfo.purpose}
-          />
-        </label>
-        <br />
-        <button type="submit">Submit</button>
+            placeholder="Soil Type"
+            value={gardenInfo.soil_type}
+            />
+          </label>
+          <br/>
+          <label>
+            Zipcode:
+            <input
+              type="text"
+              placeholder="Zip Code"
+              value={gardenInfo.zipcode}
+            />
+          </label>
+        </div>
+          <br />
+        <div class="form-row">
+
+          <label>
+            Sunlight:
+            <input
+              type="text"
+              placeholder="Sunlight"
+              value={gardenInfo.sunlight}
+            />
+          </label>
+          <br />
+          <label>
+            Water Needs:
+            <input
+              type="text"
+              placeholder="Water Needs"
+              value={gardenInfo.water_needs}
+            />
+          </label>
+          <br />
+          <label>
+            Purpose:
+            <input
+              type="text"
+              placeholder="Purpose"
+              value={gardenInfo.purpose}
+            />
+          </label>
+          <br />
+        </div>
+          <button type="submit">Search</button>
       </form>
     </section>
     
