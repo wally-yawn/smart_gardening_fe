@@ -1,15 +1,32 @@
-import './GardenInput.css';
-import React, { useState } from 'react';
+import "./GardenInput.css";
+import React, { useState , useEffect } from "react";
 
-function GardenInput() {
+function GardenInput( { gardenId }) {
   const [gardenInfo, setGardenInfo] = useState({
-    name: '',
-    zipcode: '',
-    sunlight: '',
-    soil_type: '',
-    water_needs: '',
-    purpose: '',
+    name: "",
+    zipcode: "",
+    sunlight: "",
+    soil_type: "",
+    water_needs: "",
+    purpose: "",
   });
+
+  useEffect(() => {
+    const fetchGarden = async () => {
+      try {
+        const response = await fetch(`/gardens/$gardenId`);
+        if (response.ok) {
+          const gardenData = await response.json();
+          setGardenInfo(gardenData);
+        } else {
+          console.error("Failed to fetch garden data", response.status);
+        }
+      };
+
+      fetchGarden();
+    }, [gardenId]);
+
+
 
   return (
     <section class="garden-form-section">
@@ -25,7 +42,7 @@ function GardenInput() {
             />
           </label>
 
-        <label>
+          <label>
             Garden Name:
             <select name="name" value={gardenInfo.name}>
               <option value="">Select a Garden Name</option>
@@ -35,7 +52,7 @@ function GardenInput() {
               <option value="Mixed Garden">Mixed Garden</option>
             </select>
           </label>
-         
+
           <label>
             Soil Type:
             <select name="soil_type" value={gardenInfo.soil_type}>
@@ -48,11 +65,9 @@ function GardenInput() {
               <option value="Chalky">Chalky</option>
             </select>
           </label>
-          
         </div>
-         
-        <div class="form-row">
 
+        <div class="form-row">
           <label>
             Sunlight:
             <select name="sunlight" value={gardenInfo.sunlight}>
@@ -62,7 +77,7 @@ function GardenInput() {
               <option value="Shade">Shade</option>
             </select>
           </label>
-          
+
           <label>
             Water Needs:
             <select name="water_needs" value={gardenInfo.water_needs}>
@@ -72,7 +87,7 @@ function GardenInput() {
               <option value="High">High</option>
             </select>
           </label>
-        
+
           <label>
             Purpose:
             <select name="purpose" value={gardenInfo.purpose}>
@@ -83,13 +98,11 @@ function GardenInput() {
               <option value="Recreation">Recreation</option>
             </select>
           </label>
-         
         </div>
-          <button type="submit">Search</button>
+        <button type="submit">Search</button>
       </form>
     </section>
-    
   );
-};
+}
 
-export default GardenInput
+export default GardenInput;
