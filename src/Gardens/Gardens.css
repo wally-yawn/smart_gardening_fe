@@ -1,0 +1,10 @@
+.all-plant-cards {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.my-garden-page {
+  border: 2px solid darkgreen;
+  padding: 15px;
+  text-align: center;
+}

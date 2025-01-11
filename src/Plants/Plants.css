@@ -1,0 +1,14 @@
+.plant-image {
+  width: 100px;
+  height: auto;
+}
+
+.plant-card {
+  display: flex;
+  flex-direction: column;
+  border-style: solid;
+  border-color: green;
+  margin: 10px;
+  justify-content: center;
+  align-items: center;
+}
