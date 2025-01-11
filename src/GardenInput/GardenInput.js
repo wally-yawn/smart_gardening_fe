@@ -14,7 +14,8 @@ function GardenInput({ gardenId }) {
   useEffect(() => {
     const fetchGarden = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/v1/gardens/1`);        if (response.ok) {
+        const response = await fetch(`http://localhost:3000/api/v1/gardens/1`);
+        if (response.ok) {
           const gardenData = await response.json();
           setGardenInfo({
             name: gardenData.name || "",
