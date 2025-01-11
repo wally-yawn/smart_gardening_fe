@@ -2,12 +2,12 @@ import logo from "./logo.svg";
 import "./App.css";
 import GardenInput from "./GardenInput/GardenInput";
 import Header from "./Header/Header";
-//import GardensContainer from "./GardensContainer/GardensContainer";
 import Gardens from "./Gardens/Gardens";
-//import Plants from "./Plants/Plants";
 import React, { useState } from "react";
+import { useNavigate, Routes, Route } from "react-router-dom";
 
 function App() {
+  const navigate = useNavigate();
   const [myGardens, setMyGardens] = useState({
     name: "Test Garden",
     plants: [
@@ -29,11 +29,28 @@ function App() {
     ],
   });
 
+  const goToGarden = () => {
+    navigate("/mygarden");
+  };
+
   return (
     <div>
       <Header />
-      <GardenInput />
-      <Gardens gardens={myGardens} />
+
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <>
+              <button onClick={goToGarden} className="my-garden-button">
+                My Garden
+              </button>{" "}
+              <GardenInput />
+            </>
+          }
+        />
+        <Route path="/mygarden" element={<Gardens gardens={myGardens} />} />
+      </Routes>
     </div>
   );
 }
