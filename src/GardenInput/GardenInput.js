@@ -1,10 +1,10 @@
 import "./GardenInput.css";
-import React, { useState , useEffect } from "react";
+import React, { useState, useEffect } from "react";
 
-function GardenInput( { gardenId }) {
+function GardenInput({ gardenId }) {
   const [gardenInfo, setGardenInfo] = useState({
     name: "",
-    zipcode: "",
+    zip_code: "",
     sunlight: "",
     soil_type: "",
     water_needs: "",
@@ -14,37 +14,61 @@ function GardenInput( { gardenId }) {
   useEffect(() => {
     const fetchGarden = async () => {
       try {
-        const response = await fetch(`/gardens/$gardenId`);
+        const response = await fetch(`http://localhost:3000/api/v1/gardens/1`);
+        console.log("Response status:", response.status);
         if (response.ok) {
           const gardenData = await response.json();
-          setGardenInfo(gardenData);
+          console.log("Garden data received:", gardenData);
+          setGardenInfo({
+            name: gardenData.name || "",
+            zip_code: gardenData.zip_code || "",
+            sunlight: gardenData.sunlight || "",
+            soil_type: gardenData.soil_type || "",
+            water_needs: gardenData.water_needs || "",
+            purpose: gardenData.purpose || "",
+          });
         } else {
           console.error("Failed to fetch garden data", response.status);
         }
-      };
+      } catch (error) {
+        console.error("Failed to fetch garden data", error.message);
+      }
+    };
 
-      fetchGarden();
-    }, [gardenId]);
+    fetchGarden();
+  }, []);
 
-
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setGardenInfo({
+      ...gardenInfo,
+      [name]: value || "",
+    });
+  };
 
   return (
-    <section class="garden-form-section">
+    <section className="garden-form-section">
       <h1>Input Garden Info</h1>
-      <form class="garden-form">
-        <div class="form-row">
+      <form className="garden-form">
+        <div className="form-row">
           <label>
             Zipcode:
             <input
               type="text"
               placeholder="Zip Code"
-              value={gardenInfo.zipcode}
+              name="zip_code"
+              value={gardenInfo.zip_code || ""}
+              onChange={handleInputChange}
             />
           </label>
 
           <label>
             Garden Name:
-            <select name="name" value={gardenInfo.name}>
+            <select
+              name="name"
+              value={gardenInfo.name || ""}
+              onChange={handleInputChange}
+            >
               <option value="">Select a Garden Name</option>
               <option value="Herb Garden">Herb Garden</option>
               <option value="Vegetable Garden">Vegetable Garden</option>
@@ -55,7 +79,11 @@ function GardenInput( { gardenId }) {
 
           <label>
             Soil Type:
-            <select name="soil_type" value={gardenInfo.soil_type}>
+            <select
+              name="soil_type"
+              value={gardenInfo.soil_type || ""}
+              onChange={handleInputChange}
+            >
               <option value="">Select Soil Type</option>
               <option value="Clay">Clay</option>
               <option value="Sandy">Sandy</option>
@@ -63,34 +91,49 @@ function GardenInput( { gardenId }) {
               <option value="Peaty">Peaty</option>
               <option value="Silty">Silty</option>
               <option value="Chalky">Chalky</option>
+              <option value="Don't Know">Don't Know</option>
             </select>
           </label>
         </div>
 
-        <div class="form-row">
+        <div className="form-row">
           <label>
             Sunlight:
-            <select name="sunlight" value={gardenInfo.sunlight}>
+            <select
+              name="sunlight"
+              value={gardenInfo.sunlight || ""}
+              onChange={handleInputChange}
+            >
               <option value="">Select Sunlight</option>
               <option value="Full Sun">Full Sun</option>
               <option value="Partial Sun">Partial Sun</option>
               <option value="Shade">Shade</option>
+              <option value="Don't Know">Don't Know</option>
             </select>
           </label>
 
           <label>
             Water Needs:
-            <select name="water_needs" value={gardenInfo.water_needs}>
+            <select
+              name="water_needs"
+              value={gardenInfo.water_needs || ""}
+              onChange={handleInputChange}
+            >
               <option value="">Select Water Needs</option>
               <option value="Low">Low</option>
               <option value="Moderate">Moderate</option>
               <option value="High">High</option>
+              <option value="Don't Know">Don't Know</option>
             </select>
           </label>
 
           <label>
             Purpose:
-            <select name="purpose" value={gardenInfo.purpose}>
+            <select
+              name="purpose"
+              value={gardenInfo.purpose || ""}
+              onChange={handleInputChange}
+            >
               <option value="">Select Purpose</option>
               <option value="Aesthetic">Aesthetic</option>
               <option value="Food Production">Food Production</option>
