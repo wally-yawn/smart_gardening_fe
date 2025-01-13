@@ -29,7 +29,7 @@ function App() {
     ],
   });
   
-  const [recommendataions, setRecommendations] = useState({
+  const [recommendations, setRecommendations] = useState({
     plants: []
   });
 

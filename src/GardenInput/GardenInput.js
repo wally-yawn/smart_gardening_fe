@@ -2,6 +2,8 @@ import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
 
 function GardenInput({ gardenId, setRecommendations }) {
+  const url = 'http://'
+
   const [gardenInfo, setGardenInfo] = useState({
     name: "",
     zip_code: "",
@@ -46,6 +48,7 @@ function GardenInput({ gardenId, setRecommendations }) {
 
   function searchRecommendations(e){
     e.preventDefault()
+
     setRecommendations(['plant'])
   }
 
