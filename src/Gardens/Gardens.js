@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";import "./Gardens.css";
 import Plants from "../Plants/Plants";
 
 function Gardens({ gardens }) {
-  const [allPlants, setAllPlants] = useState();
+  const [allPlants, setAllPlants] = useState(gardens.plants);
 
   const testPlants = [
     { id: 1, name: "Tomato", img_url: "https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg", description: "A popular vegetable that thrives in full sun." },
