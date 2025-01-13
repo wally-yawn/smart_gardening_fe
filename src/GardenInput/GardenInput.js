@@ -1,7 +1,7 @@
 import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
 
-function GardenInput({ gardenId }) {
+function GardenInput({ gardenId, setRecommendations }) {
   const [gardenInfo, setGardenInfo] = useState({
     name: "",
     zip_code: "",
@@ -43,6 +43,11 @@ function GardenInput({ gardenId }) {
       [name]: value || "",
     });
   };
+
+  function searchRecommendations(e){
+    e.preventDefault()
+    setRecommendations(['plant'])
+  }
 
   return (
     <section className="garden-form-section">
@@ -140,7 +145,7 @@ function GardenInput({ gardenId }) {
             </select>
           </label>
         </div>
-        <button type="submit">Search</button>
+        <button type="submit" onClick={searchRecommendations}>Search</button>
       </form>
     </section>
   );
