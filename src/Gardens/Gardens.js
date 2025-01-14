@@ -13,8 +13,24 @@ function Gardens({ gardens }) {
     setAllPlants(testPlants);
   }, []);
 
-  const removePlant = (plantId) => {
-    setAllPlants(allPlants.filter((plant) => plant.id !== plantId));
+  const removePlant = async (plantId) => {
+    try {
+      const response = await fetch(`http://loclhost300/garden/${gardens.id}/plant/${plantId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+
+      if (response.ok) {
+        setAllPlants(allPlants.filter((plant) => plant.id !== plantId));
+        console.log(`Plant deleted successfully.`);
+      } else {
+        console.error(`Failed to delete plant`);
+      }
+    } catch (error) {
+      console.error("Error deleting plant:", error);
+    }
   };
   const plantCards = allPlants.map((plant) => {
     return (
