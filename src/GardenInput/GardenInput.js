@@ -84,8 +84,8 @@ function GardenInput({ gardenId, setRecommendations }) {
     try {
       const method = hasGarden ? "PATCH" : "POST";
       const saveUrl = hasGarden
-      ? `${url}gardens/1`
-      : `${url}gardens`;
+      ? `${url}/gardens/1`
+      : `${url}/gardens`;
 
       const response = await fetch(saveUrl, {
         method,
