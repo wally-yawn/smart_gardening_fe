@@ -2,7 +2,7 @@ import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
 
 function GardenInput({ gardenId, setRecommendations }) {
-  const url = 'http://localhost:3000/api/v1/'
+  const url = 'http://localhost:3000/api/v1'
   const [error, setError] = useState(null);
 
   const [gardenInfo, setGardenInfo] = useState({
@@ -13,6 +13,8 @@ function GardenInput({ gardenId, setRecommendations }) {
     water_needs: "",
     purpose: "",
   });
+
+  const [hasGarden, setHasGarden] = useState(false);
 
   useEffect(() => {
     const fetchGarden = async () => {
@@ -28,6 +30,7 @@ function GardenInput({ gardenId, setRecommendations }) {
             water_needs: gardenData.water_needs || "",
             purpose: gardenData.purpose || "",
           });
+          setHasGarden(true);
         } else {
           console.error("Failed to fetch garden data", response.status);
         }
@@ -59,7 +62,7 @@ function GardenInput({ gardenId, setRecommendations }) {
       purpose: gardenInfo.purpose,
     };
 
-    fetch(`${url}/recommendation?/` + new URLSearchParams(params), {
+    fetch(`${url}/recommendation?` + new URLSearchParams(params), {
       method: 'GET',
       headers: { 'Content-Type': 'application/json'},
     })
@@ -74,6 +77,35 @@ function GardenInput({ gardenId, setRecommendations }) {
       })
       .catch((error) => setError(error.message));
   }
+
+  const handleSaveOrEdit = async (event) => {
+    event.preventDefault();
+
+    try {
+      const method = hasGarden ? "PATCH" : "POST";
+      const saveUrl = hasGarden
+      ? `${url}/gardens/1`
+      : `${url}/gardens`;
+
+      const response = await fetch(saveUrl, {
+        method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ garden: gardenInfo }),
+      });
+
+      if(response.ok) {
+        const gardenData = await response.json();
+        setHasGarden(true);
+        console.log("Garden saved/updated successfully: ", gardenData);
+      } else {
+        console.error("Failed to save/update garden");
+      }
+    } catch (error) {
+      console.error("Failed to save/update garden", error.message)
+    }
+  };
 
   return (
     <section className="garden-form-section">
@@ -172,6 +204,7 @@ function GardenInput({ gardenId, setRecommendations }) {
           </label>
         </div>
         <button type="submit" onClick={searchRecommendations}>Search</button>
+        <button type="button" onClick={handleSaveOrEdit}>{hasGarden ? "Edit" : "Save"}</button>
       </form>
     </section>
   );
