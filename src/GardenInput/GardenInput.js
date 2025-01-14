@@ -1,7 +1,10 @@
 import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
 
-function GardenInput({ gardenId }) {
+function GardenInput({ gardenId, setRecommendations }) {
+  const url = 'http://localhost:3000/api/v1/'
+  const [error, setError] = useState(null);
+
   const [gardenInfo, setGardenInfo] = useState({
     name: "",
     zip_code: "",
@@ -43,6 +46,34 @@ function GardenInput({ gardenId }) {
       [name]: value || "",
     });
   };
+
+  function searchRecommendations(e){
+    e.preventDefault();
+
+    console.log("gardenInfo: ", gardenInfo);
+    const params = {
+      zip_code: gardenInfo.zip_code,
+      sunlight: gardenInfo.sunlight,
+      soil_type: gardenInfo.soil_type,
+      water_needs: gardenInfo.water_needs,
+      purpose: gardenInfo.purpose,
+    };
+
+    fetch(`${url}/recommendation?/` + new URLSearchParams(params), {
+      method: 'GET',
+      headers: { 'Content-Type': 'application/json'},
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error('Failed to get recommendations');
+        }
+        return response.json()
+      })
+      .then((data) => {
+        setRecommendations(data)
+      })
+      .catch((error) => setError(error.message));
+  }
 
   return (
     <section className="garden-form-section">
@@ -140,7 +171,7 @@ function GardenInput({ gardenId }) {
             </select>
           </label>
         </div>
-        <button type="submit">Search</button>
+        <button type="submit" onClick={searchRecommendations}>Search</button>
       </form>
     </section>
   );
