@@ -10,6 +10,7 @@ function GardenInput({ gardenId }) {
     water_needs: "",
     purpose: "",
   });
+  const [hasGarden, setHasGarden] = useState(false);
 
   useEffect(() => {
     const fetchGarden = async () => {
@@ -25,6 +26,9 @@ function GardenInput({ gardenId }) {
             water_needs: gardenData.water_needs || "",
             purpose: gardenData.purpose || "",
           });
+          setHasGarden(true);
+        } else if (response.status === 404) {
+          console.log("No garden found");
         } else {
           console.error("Failed to fetch garden data", response.status);
         }
@@ -44,10 +48,45 @@ function GardenInput({ gardenId }) {
     });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const formData= new FormData(event.target);
+    const action = formData.get("action");
+
+    if (action === "search") {
+      console.log("Search for garden");
+      return;
+    }
+
+    try {
+      const method = hasGarden ? "PATCH" : "POST";
+      const url = hasGarden
+        ? `http://localhost:3000/api/v1/gardens/1`
+        : `http://localhost:3000/api/v1/gardens`;
+
+      const response = await fetch(url, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ garden: gardenInfo }),
+      });
+
+      if (response.ok) {
+        const gardenData = await response.json();
+        setHasGarden(true);
+        console.log("Garden data saved", gardenData);
+      }
+    } catch (error) {
+      console.error("Failed to save garden data", error.message);
+    }
+  };
+
   return (
     <section className="garden-form-section">
       <h1>Input Garden Info</h1>
-      <form className="garden-form">
+      <form className="garden-form" onSubmit={handleSubmit}>
         <div className="form-row">
           <label>
             Zipcode:
@@ -93,7 +132,6 @@ function GardenInput({ gardenId }) {
             </select>
           </label>
         </div>
-
         <div className="form-row">
           <label>
             Sunlight:
@@ -140,7 +178,12 @@ function GardenInput({ gardenId }) {
             </select>
           </label>
         </div>
-        <button type="submit">Search</button>
+        <button type="submit" name="action" value="search">
+          Search
+        </button>
+        <button type="submit" name="action" value="save">
+          {hasGarden ? "Edit" : "Save"}
+        </button>
       </form>
     </section>
   );
