@@ -28,6 +28,10 @@ function App() {
       },
     ],
   });
+  
+  const [recommendations, setRecommendations] = useState({
+    plants: []
+  });
 
   const goToGarden = () => {
     navigate("/mygarden");
@@ -36,7 +40,6 @@ function App() {
   return (
     <div>
       <Header />
-
       <Routes>
         <Route
           path="/"
@@ -45,7 +48,10 @@ function App() {
               <button onClick={goToGarden} className="my-garden-button">
                 My Garden
               </button>{" "}
-              <GardenInput />
+              <GardenInput 
+                key={'gardenInput'} 
+                setRecommendations = {setRecommendations}
+              />
             </>
           }
         />
