@@ -5,7 +5,7 @@ function SavePlant({ name, img_url, description }) {
   const [buttonText, setButtonText] = useState("Save Plant");
   const plantData = {
     name: name,
-    // img_url: img_url,
+    img_url: img_url,
     description: description,
   };
   const handlePlant = async () => {
