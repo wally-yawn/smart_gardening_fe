@@ -205,8 +205,8 @@ function GardenInput({ gardenId, setRecommendations }) {
             </select>
           </label>
         </div>
-        <button type="submit" onClick={searchRecommendations}>Search</button>
-        <button type="button" onClick={handleSaveOrEdit}>{hasGarden ? "Edit" : "Save"}</button>
+        <button className='search-button' type="submit" onClick={searchRecommendations}>Search</button>
+        <button className='edit-save-button' type="button" onClick={handleSaveOrEdit}>{hasGarden ? "Edit" : "Save"}</button>
       </form>
     </section>
   );

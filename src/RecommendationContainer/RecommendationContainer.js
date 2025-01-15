@@ -28,7 +28,7 @@ console.log('plantrecommendation: ', plantRecommendations.data)
 
   return (
     <section className="recommendations-container"> 
-      <h2 className="recommendations-headers"> Recommendations </h2>
+      <h2 className="recommendations-header"> Recommendations </h2>
       {allPlants === null ? (
         <p className="default-message">Enter your garden information and click Search to get recommendations!</p>
       ) : (

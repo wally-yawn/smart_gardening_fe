@@ -1,0 +1,23 @@
+{
+  "id": "mock-chatcmpl-123",
+  "data": [
+      {
+          "index": 1,
+          "type": "plant",
+          "attributes": {
+              "name": "Strawberry",
+              "description": "Thrives in loamy soil and full sun, ideal for food production.",
+              "image": "https://example.com/mock-strawberry.jpg"
+          }
+      },
+      {
+          "index": 2,
+          "type": "plant",
+          "attributes": {
+              "name": "Basil",
+              "description": "Aromatic herb thriving in full sun with moderate watering.",
+              "image": "https://example.com/mock-basil.jpg"
+          }
+      }
+  ]
+}
