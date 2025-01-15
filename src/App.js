@@ -57,10 +57,6 @@ function App() {
                 key={'recommendation-container'}
                 plantRecommendations = {recommendations}
               />
-              <RecommendationContainer
-                key={'recommendation-container'}
-                plantRecommendations = {recommendations}
-              />
             </>
           }
         />
