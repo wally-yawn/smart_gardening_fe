@@ -1,10 +1,9 @@
 import "./RecommendationContainer.css";
-import React from "react";
+import React, { useState, useEffect} from "react";
 import Plants from "../Plants/Plants";
 
 function RecommendationContainer({ plantRecommendations }){
-
-  let allPlants; // Declare `allPlants` in a wider scope
+  let allPlants;
 
   if (plantRecommendations?.data?.length > 0) {
     console.log('recommendations: ', plantRecommendations)
@@ -22,17 +21,20 @@ function RecommendationContainer({ plantRecommendations }){
       );
     });
   } else {
-    allPlants = 'hello';
+    allPlants = null;
   }
 
 console.log('plantrecommendation: ', plantRecommendations.data)
 
   return (
     <section className="recommendations-container"> 
-      <h2 class='recommendations-headers'>This is my header </h2>
-      <div class="all-plant-cards">{allPlants}</div>
-      <h3>plantRecommendations</h3>
-    </section>
+    <h2 className="recommendations-headers"> Recommendations </h2>
+    {allPlants === null ? (
+      <p className="default-messsage">Enter your garden information and click Search to get recommendations!</p>
+    ) : (
+      <div className="all-plant-cards">{allPlants}</div>
+    )}
+  </section>
   )
 }
 

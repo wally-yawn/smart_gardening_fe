@@ -1,7 +1,7 @@
 import React from "react";
 import "./Plants.css";
 
-function Plants({ id, name, image, description }) {
+function Plants({ name, image, description }) {
   console.log("Test", name);
   return (
     <div className="plant-card">
