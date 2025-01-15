@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";import "./Gardens.css";
 import Plants from "../Plants/Plants";
+import BASE_URL from '../config/config';
 
 function Gardens({ gardens }) {
   const [allPlants, setAllPlants] = useState(gardens.plants);
@@ -15,7 +16,7 @@ function Gardens({ gardens }) {
 
   const removePlant = async (plantId) => {
     try {
-      const response = await fetch(`http://loclhost300/garden/${gardens.id}/plant/${plantId}`, {
+      const response = await fetch(`${BASE_URL}/garden/${gardens.id}/plant/${plantId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
