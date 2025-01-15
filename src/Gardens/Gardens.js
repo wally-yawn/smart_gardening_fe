@@ -3,6 +3,7 @@ import Plants from "../Plants/Plants";
 import BASE_URL from '../config/config';
 
 function Gardens({ gardens }) {
+  const url = 'http://localhost:3000/api/v1'
   const [allPlants, setAllPlants] = useState(gardens.plants);
 
   const testPlants = [
