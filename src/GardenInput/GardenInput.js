@@ -2,7 +2,7 @@ import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
 
 function GardenInput({ gardenId, setRecommendations }) {
-  const url = 'http://localhost:3000/api/v1/'
+  const url = 'http://localhost:3000/api/v1'
   const [error, setError] = useState(null);
 
   const [gardenInfo, setGardenInfo] = useState({
@@ -59,7 +59,7 @@ function GardenInput({ gardenId, setRecommendations }) {
       purpose: gardenInfo.purpose,
     };
 
-    fetch(`${url}/recommendation?/` + new URLSearchParams(params), {
+    fetch(`${url}/recommendation?` + new URLSearchParams(params), {
       method: 'GET',
       headers: { 'Content-Type': 'application/json'},
     })

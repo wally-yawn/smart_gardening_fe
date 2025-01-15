@@ -3,6 +3,7 @@ import "./App.css";
 import GardenInput from "./GardenInput/GardenInput";
 import Header from "./Header/Header";
 import Gardens from "./Gardens/Gardens";
+import RecommendationContainer from "./RecommendationContainer/RecommendationContainer"
 import React, { useState } from "react";
 import { useNavigate, Routes, Route } from "react-router-dom";
 
@@ -28,7 +29,6 @@ function App() {
       },
     ],
   });
-  
   const [recommendations, setRecommendations] = useState({
     plants: []
   });
@@ -51,6 +51,10 @@ function App() {
               <GardenInput 
                 key={'gardenInput'} 
                 setRecommendations = {setRecommendations}
+              />
+              <RecommendationContainer
+                key={'recommendation-container'}
+                plantRecommendations = {recommendations}
               />
             </>
           }
