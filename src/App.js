@@ -28,9 +28,9 @@ function App() {
       },
     ],
   });
-  
+
   const [recommendations, setRecommendations] = useState({
-    plants: []
+    plants: [],
   });
 
   const goToGarden = () => {
@@ -48,9 +48,9 @@ function App() {
               <button onClick={goToGarden} className="my-garden-button">
                 My Garden
               </button>{" "}
-              <GardenInput 
-                key={'gardenInput'} 
-                setRecommendations = {setRecommendations}
+              <GardenInput
+                key={"gardenInput"}
+                setRecommendations={setRecommendations}
               />
             </>
           }
