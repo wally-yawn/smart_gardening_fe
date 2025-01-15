@@ -28,12 +28,12 @@ console.log('plantrecommendation: ', plantRecommendations.data)
 
   return (
     <section className="recommendations-container"> 
-    <h2 className="recommendations-headers"> Recommendations </h2>
-    {allPlants === null ? (
-      <p className="default-messsage">Enter your garden information and click Search to get recommendations!</p>
-    ) : (
-      <div className="all-plant-cards">{allPlants}</div>
-    )}
+      <h2 className="recommendations-headers"> Recommendations </h2>
+      {allPlants === null ? (
+        <p className="default-message">Enter your garden information and click Search to get recommendations!</p>
+      ) : (
+        <div className="plant-cards">{allPlants}</div>
+      )}
   </section>
   )
 }
