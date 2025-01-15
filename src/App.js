@@ -10,7 +10,7 @@ function App() {
   const url = "http://localhost:3000/api/v1";
   const navigate = useNavigate();
   const [myGardens, setMyGardens] = useState({
-    name: "Test Garden",
+    name: "Your Garden",
     plants: [],
   });
 
@@ -20,27 +20,28 @@ function App() {
 
   const goToGarden = () => {
     navigate("/mygarden");
+    fetchGardenPlants();
+  };
+
+  const fetchGardenPlants = async () => {
+    try {
+      const response = await fetch(`${url}/1/plants`);
+      if (response.ok) {
+        const data = await response.json();
+        console.log("data from fetch", data.data[0]);
+        setMyGardens((prevGardens) => ({
+          ...prevGardens,
+          plants: data.data,
+        }));
+      } else {
+        console.error("Failed to fetch your garden's plants");
+      }
+    } catch (error) {
+      console.error("Error fetching plants", error);
+    }
   };
 
   useEffect(() => {
-    console.log("useEffectcalled");
-    const fetchGardenPlants = async () => {
-      try {
-        const response = await fetch(`${url}/1/plants`);
-        if (response.ok) {
-          const data = await response.json();
-          console.log("data from fetch", data.data[0]);
-          setMyGardens((prevGardens) => ({
-            ...prevGardens,
-            plants: data.data,
-          }));
-        } else {
-          console.error("Failed to fetch your garden's plants");
-        }
-      } catch (error) {
-        console.error("Error fetching plants", error);
-      }
-    };
     fetchGardenPlants();
   }, []);
 
@@ -62,7 +63,15 @@ function App() {
             </>
           }
         />
-        <Route path="/mygarden" element={<Gardens gardens={myGardens} />} />
+        <Route
+          path="/mygarden"
+          element={
+            <Gardens
+              gardens={myGardens}
+              fetchGardenPlants={fetchGardenPlants}
+            />
+          }
+        />
       </Routes>
     </div>
   );
