@@ -2,21 +2,18 @@ import React, { useState, useEffect } from "react";
 import "./Gardens.css";
 import Plants from "../Plants/Plants";
 
-function Gardens({ gardens, fetchGardenPlants }) {
-  console.log("gardensinfo", gardens);
+function Gardens({ gardens }) {
+  const url = "http://localhost:3000/api/v1";
   const [allPlants, setAllPlants] = useState(gardens.plants);
 
   const removePlant = async (plantId) => {
     try {
-      const response = await fetch(
-        `http://localhost:3000/api/v1/gardens/1/plants/${plantId}`,
-        {
-          method: "DELETE",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
+      const response = await fetch(`${url}/gardens/1/plants/${plantId}`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
 
       if (response.ok) {
         setAllPlants(allPlants.filter((plant) => plant.id !== plantId));
