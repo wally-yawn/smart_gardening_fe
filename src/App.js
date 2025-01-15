@@ -3,39 +3,46 @@ import "./App.css";
 import GardenInput from "./GardenInput/GardenInput";
 import Header from "./Header/Header";
 import Gardens from "./Gardens/Gardens";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate, Routes, Route } from "react-router-dom";
 
 function App() {
+  const url = "http://localhost:3000/api/v1";
   const navigate = useNavigate();
   const [myGardens, setMyGardens] = useState({
     name: "Test Garden",
-    plants: [
-      {
-        id: 1,
-        name: "Tomato",
-        img_url:
-          "https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg",
-        description: "A popular vegetable that thrives in full sun.",
-      },
-      {
-        id: 2,
-        name: "Carrot",
-        img_url:
-          "https://upload.wikimedia.org/wikipedia/commons/e/e6/Carrots.JPG",
-
-        description: "A root vegetable that grows well in loamy soil.",
-      },
-    ],
+    plants: [],
   });
-  
+
   const [recommendations, setRecommendations] = useState({
-    plants: []
+    plants: [],
   });
 
   const goToGarden = () => {
     navigate("/mygarden");
   };
+
+  useEffect(() => {
+    console.log("useEffectcalled");
+    const fetchGardenPlants = async () => {
+      try {
+        const response = await fetch(`${url}/1/plants`);
+        if (response.ok) {
+          const data = await response.json();
+          console.log("data from fetch", data.data[0]);
+          setMyGardens((prevGardens) => ({
+            ...prevGardens,
+            plants: data.data,
+          }));
+        } else {
+          console.error("Failed to fetch your garden's plants");
+        }
+      } catch (error) {
+        console.error("Error fetching plants", error);
+      }
+    };
+    fetchGardenPlants();
+  }, []);
 
   return (
     <div>
@@ -48,9 +55,9 @@ function App() {
               <button onClick={goToGarden} className="my-garden-button">
                 My Garden
               </button>{" "}
-              <GardenInput 
-                key={'gardenInput'} 
-                setRecommendations = {setRecommendations}
+              <GardenInput
+                key={"gardenInput"}
+                setRecommendations={setRecommendations}
               />
             </>
           }

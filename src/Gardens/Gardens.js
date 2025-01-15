@@ -1,26 +1,43 @@
-import React, { useState, useEffect } from "react";import "./Gardens.css";
+import React, { useState, useEffect } from "react";
+import "./Gardens.css";
 import Plants from "../Plants/Plants";
 
 function Gardens({ gardens }) {
+  console.log("gardensinfo", gardens);
   const [allPlants, setAllPlants] = useState(gardens.plants);
 
-  const testPlants = [
-    { id: 1, name: "Tomato", img_url: "https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg", description: "A popular vegetable that thrives in full sun." },
-    { id: 2, name: "Carrot", img_url: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Carrots.JPG", description: "A root vegetable that grows well in loamy soil." },
-  ];
+  //   const testPlants = [
+  //     {
+  //       id: 1,
+  //       name: "Tomato",
+  //       img_url:
+  //         "https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg",
+  //       description: "A popular vegetable that thrives in full sun.",
+  //     },
+  //     {
+  //       id: 2,
+  //       name: "Carrot",
+  //       img_url:
+  //         "https://upload.wikimedia.org/wikipedia/commons/e/e6/Carrots.JPG",
+  //       description: "A root vegetable that grows well in loamy soil.",
+  //     },
+  //   ];
 
-  useEffect(() => {
-    setAllPlants(testPlants);
-  }, []);
+  //   useEffect(() => {
+  //     setAllPlants(testPlants);
+  //   }, []);
 
   const removePlant = async (plantId) => {
     try {
-      const response = await fetch(`http://loclhost300/garden/${gardens.id}/plant/${plantId}`, {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://loclhost300/garden/${gardens.id}/plant/${plantId}`,
+        {
+          method: "DELETE",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
 
       if (response.ok) {
         setAllPlants(allPlants.filter((plant) => plant.id !== plantId));
@@ -33,14 +50,15 @@ function Gardens({ gardens }) {
     }
   };
   const plantCards = allPlants.map((plant) => {
+    console.log("Plant card info", plant.id);
     return (
       <Plants
         id={plant.id}
         key={plant.id}
-        name={plant.name}
-        image={plant.img_url}
-        description={plant.description}
-        deletePlant={removePlant}  
+        name={plant.attributes.name}
+        image={plant.attributes.img_url}
+        description={plant.attributes.description}
+        deletePlant={removePlant}
       />
     );
   });
