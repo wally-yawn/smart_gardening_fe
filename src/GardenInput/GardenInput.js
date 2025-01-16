@@ -4,7 +4,7 @@ import BASE_URL from '../config/config';
 
 function GardenInput({ gardenId, setRecommendations }) {
   const [error, setError] = useState(null);
-
+  const [successMessage, setSuccessMessage] = useState(null);
   const [gardenInfo, setGardenInfo] = useState({
     name: "",
     zip_code: "",
@@ -13,7 +13,6 @@ function GardenInput({ gardenId, setRecommendations }) {
     water_needs: "",
     purpose: "",
   });
-
   const [hasGarden, setHasGarden] = useState(false);
 
   useEffect(() => {
@@ -44,6 +43,18 @@ function GardenInput({ gardenId, setRecommendations }) {
     fetchGarden();
   }, []);
 
+  const isZipValid = (zip) => /^\d{5}(-\d{4})?$/.test(zip);
+
+  const areDropdownsValid = (
+      gardenInfo.name &&
+      gardenInfo.sunlight &&
+      gardenInfo.soil_type &&
+      gardenInfo.water_needs &&
+      gardenInfo.purpose
+    ) || false;
+
+  const isSearchEnabled = isZipValid(gardenInfo.zip_code) && areDropdownsValid;
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setGardenInfo({
@@ -54,7 +65,14 @@ function GardenInput({ gardenId, setRecommendations }) {
 
   function searchRecommendations(e){
     e.preventDefault();
+    if (!isSearchEnabled) {
+      setError("Please complete all fields before searching.")
+      return;
+    }
 
+    setError(null);
+    setSuccessMessage("Searching for recommendations...");
+    setTimeout(() => setSuccessMessage(null), 5000);
     console.log("gardenInfo: ", gardenInfo);
     const params = {
       zip_code: gardenInfo.zip_code,
@@ -76,6 +94,8 @@ function GardenInput({ gardenId, setRecommendations }) {
       })
       .then((data) => {
         setRecommendations(data)
+        setSuccessMessage("Recommendations fetched successfully.");
+        setTimeout(() => setSuccessMessage(null), 5000);
       })
       .catch((error) => setError(error.message));
   }
@@ -98,14 +118,16 @@ function GardenInput({ gardenId, setRecommendations }) {
       });
 
       if(response.ok) {
-        const gardenData = await response.json();
+        await response.json();
         setHasGarden(true);
-        console.log("Garden saved/updated successfully: ", gardenData);
+        setSuccessMessage("Garden saved/updated successfully.");
+        setTimeout(() => setSuccessMessage(null), 5000);
       } else {
-        console.error("Failed to save/update garden");
+        setError("Failed to save/update garden.");
       }
     } catch (error) {
       console.error("Failed to save/update garden", error.message)
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -208,6 +230,8 @@ function GardenInput({ gardenId, setRecommendations }) {
         <button className='search-button' type="submit" onClick={searchRecommendations}>Search</button>
         <button className='edit-save-button' type="button" onClick={handleSaveOrEdit}>{hasGarden ? "Edit" : "Save"}</button>
       </form>
+      {error && <p className="error">{error}</p>}
+      {successMessage && <p className="success">{successMessage}</p>}
     </section>
   );
 }
