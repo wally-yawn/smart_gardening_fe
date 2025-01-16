@@ -3,7 +3,6 @@ import Plants from "../Plants/Plants";
 import BASE_URL from '../config/config';
 
 function Gardens({ gardens }) {
-  const url = 'http://localhost:3000/api/v1'
   const [allPlants, setAllPlants] = useState(gardens.plants);
 
   const testPlants = [
@@ -17,7 +16,7 @@ function Gardens({ gardens }) {
 
   const removePlant = async (plantId) => {
     try {
-      const response = await fetch(`${BASE_URL}/garden/${gardens.id}/plant/${plantId}`, {
+      const response = await fetch(`${BASE_URL}/gardens/1/plants/${plantId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
