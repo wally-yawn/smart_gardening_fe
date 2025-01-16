@@ -3,40 +3,41 @@ import "./App.css";
 import GardenInput from "./GardenInput/GardenInput";
 import Header from "./Header/Header";
 import Gardens from "./Gardens/Gardens";
-import RecommendationContainer from "./RecommendationContainer/RecommendationContainer"
-import React, { useState } from "react";
-import { useNavigate, Routes, Route } from "react-router-dom";
+import RecommendationContainer from "./RecommendationContainer/RecommendationContainer";
+import React, { useState, useEffect } from "react";
+import { Link, Routes, Route } from "react-router-dom";
 
 function App() {
-  const navigate = useNavigate();
+  const url = "http://localhost:3000/api/v1";
   const [myGardens, setMyGardens] = useState({
-    name: "Test Garden",
-    plants: [
-      {
-        id: 1,
-        name: "Tomato",
-        img_url:
-          "https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg",
-        description: "A popular vegetable that thrives in full sun.",
-      },
-      {
-        id: 2,
-        name: "Carrot",
-        img_url:
-          "https://upload.wikimedia.org/wikipedia/commons/e/e6/Carrots.JPG",
-
-        description: "A root vegetable that grows well in loamy soil.",
-      },
-    ],
+    name: "My Garden",
+    plants: [],
   });
 
   const [recommendations, setRecommendations] = useState({
     plants: [],
   });
 
-  const goToGarden = () => {
-    navigate("/mygarden");
+  const fetchGardenPlants = async () => {
+    try {
+      const response = await fetch(`${url}/1/plants`);
+      if (response.ok) {
+        const data = await response.json();
+        setMyGardens((prevGardens) => ({
+          ...prevGardens,
+          plants: data.data,
+        }));
+      } else {
+        console.error("Failed to fetch your garden's plants");
+      }
+    } catch (error) {
+      console.error("Error fetching plants", error);
+    }
   };
+
+  useEffect(() => {
+    fetchGardenPlants();
+  }, []);
 
   return (
     <div>
@@ -46,21 +47,30 @@ function App() {
           path="/"
           element={
             <>
-              <button onClick={goToGarden} className="my-garden-button">
-                My Garden
-              </button>{" "}
+              <Link to="/mygarden">
+                <button className="my-garden-button">My Garden</button>
+              </Link>
               <GardenInput
-                key={'gardenInput'}
+                key={"gardenInput"}
                 setRecommendations={setRecommendations}
               />
               <RecommendationContainer
-                key={'recommendation-container'}
-                plantRecommendations = {recommendations}
+                key={"recommendation-container"}
+                plantRecommendations={recommendations}
+                fetchGardenPlants={fetchGardenPlants}
               />
             </>
           }
         />
-        <Route path="/mygarden" element={<Gardens gardens={myGardens} />} />
+        <Route
+          path="/mygarden"
+          element={
+            <Gardens
+              gardens={myGardens}
+              fetchGardenPlants={fetchGardenPlants}
+            />
+          }
+        />
       </Routes>
     </div>
   );

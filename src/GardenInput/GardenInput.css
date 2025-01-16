@@ -62,3 +62,15 @@ button {
 button:hover {
   background-color: #2980b9;
 } 
+
+.error {
+  color: red;
+  font-weight: 500;
+  margin-top: 10px;
+}
+
+.success {
+  color: #248277;
+  font-weight: 500;
+  margin-top: 10px;
+}
