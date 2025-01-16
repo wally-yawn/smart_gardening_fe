@@ -3,7 +3,7 @@ import "./Gardens.css";
 import Plants from "../Plants/Plants";
 import BASE_URL from "../config/config";
 
-function Gardens({ gardens }) {
+function Gardens({ gardens, fetchGardenPlants }) {
   const [allPlants, setAllPlants] = useState(gardens.plants);
 
   const removePlant = async (plantId) => {
@@ -36,6 +36,7 @@ function Gardens({ gardens }) {
         image={plant.attributes.img_url}
         description={plant.attributes.description}
         deletePlant={removePlant}
+        fetchGardenPlants={fetchGardenPlants}
       />
     );
   });

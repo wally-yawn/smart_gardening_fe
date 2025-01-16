@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import "./SavePlant.css";
+import BASE_URL from "../config/config";
 
-function SavePlant({ name, img_url, description }) {
+function SavePlant({ name, img_url, description, fetchGardenPlants }) {
+  console.log("Save plants fcn", name);
   const [buttonText, setButtonText] = useState("Save Plant");
   const plantData = {
     name: name,
@@ -10,7 +12,8 @@ function SavePlant({ name, img_url, description }) {
   };
   const handlePlant = async () => {
     try {
-      const response = await fetch(`http://localhost:3000/api/v1/1`, {
+      console.log("plantData", plantData);
+      const response = await fetch(`${BASE_URL}/1`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -21,6 +24,7 @@ function SavePlant({ name, img_url, description }) {
       if (response.ok) {
         console.log("Plant saved successfully");
         setButtonText("Plant Saved");
+        fetchGardenPlants();
       } else {
         const errorData = await response.json();
         console.error("Error:", errorData.message);
