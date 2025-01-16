@@ -69,4 +69,24 @@ describe('recommendations', () => {
     .get('.plant-cards > :nth-child(3) > img').should('have.attr', 'alt', 'Beets')
     .get('.plant-cards > :nth-child(3) > p').contains("Who doesn't love beets?")
   })
+
+  xit('cannot search if the zip code is blank', () => {
+    cy.get('input[name="zip_code"]').clear()
+    // check that submit is disabled
+    // check that save is disabled
+  })
+
+  xit('cannot search if the zip code is invalid', () => {
+    cy.get('input[name="zip_code"]').clear()
+    // check that submit is disabled
+    // check that save is disabled
+  })
+
+  xit('cannot save a plant twice', () => {
+
+  })
+
+  xit('can handle not-ok responses from the server', () => {
+
+  })
 })
