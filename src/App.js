@@ -5,11 +5,10 @@ import Header from "./Header/Header";
 import Gardens from "./Gardens/Gardens";
 import RecommendationContainer from "./RecommendationContainer/RecommendationContainer";
 import React, { useState, useEffect } from "react";
-import { useNavigate, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route } from "react-router-dom";
 
 function App() {
   const url = "http://localhost:3000/api/v1";
-  const navigate = useNavigate();
   const [myGardens, setMyGardens] = useState({
     name: "My Garden",
     plants: [],
@@ -19,10 +18,10 @@ function App() {
     plants: [],
   });
 
-  const goToGarden = () => {
-    navigate("/mygarden");
-    fetchGardenPlants();
-  };
+  // const goToGarden = () => {
+  //   navigate("/mygarden");
+  //   fetchGardenPlants();
+  // };
 
   const fetchGardenPlants = async () => {
     try {
@@ -53,9 +52,9 @@ function App() {
           path="/"
           element={
             <>
-              <button onClick={goToGarden} className="my-garden-button">
-                My Garden
-              </button>{" "}
+              <Link to="/mygarden">
+                <button className="my-garden-button">My Garden</button>
+              </Link>
               <GardenInput
                 key={"gardenInput"}
                 setRecommendations={setRecommendations}
