@@ -67,7 +67,11 @@ function GardenInput({ gardenId, setRecommendations }) {
 
   function searchRecommendations(e){
     e.preventDefault();
+    if (!isSearchEnabled) {
+      setError("Please complete all fields before searching.")
+    }
 
+    setError(null);
     console.log("gardenInfo: ", gardenInfo);
     const params = {
       zip_code: gardenInfo.zip_code,
@@ -111,14 +115,15 @@ function GardenInput({ gardenId, setRecommendations }) {
       });
 
       if(response.ok) {
-        const gardenData = await response.json();
+        await response.json();
         setHasGarden(true);
         console.log("Garden saved/updated successfully: ", gardenData);
       } else {
-        console.error("Failed to save/update garden");
+        setError("Failed to save/update garden.");
       }
     } catch (error) {
       console.error("Failed to save/update garden", error.message)
+      setError("An error occurred. Please try again.");
     }
   };
 
@@ -221,6 +226,7 @@ function GardenInput({ gardenId, setRecommendations }) {
         <button className='search-button' type="submit" onClick={searchRecommendations}>Search</button>
         <button className='edit-save-button' type="button" onClick={handleSaveOrEdit}>{hasGarden ? "Edit" : "Save"}</button>
       </form>
+      {error && <p className="error">{error}</p>}
     </section>
   );
 }
