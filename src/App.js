@@ -10,7 +10,7 @@ function App() {
   const url = "http://localhost:3000/api/v1";
   const navigate = useNavigate();
   const [myGardens, setMyGardens] = useState({
-    name: "Your Garden",
+    name: "My Garden",
     plants: [],
   });
 
@@ -28,7 +28,6 @@ function App() {
       const response = await fetch(`${url}/1/plants`);
       if (response.ok) {
         const data = await response.json();
-        console.log("data from fetch", data.data[0]);
         setMyGardens((prevGardens) => ({
           ...prevGardens,
           plants: data.data,

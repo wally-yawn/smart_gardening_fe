@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import "./Gardens.css";
 import Plants from "../Plants/Plants";
 
-function Gardens({ gardens }) {
+function Gardens({ gardens, fetchGardenPlants }) {
   const url = "http://localhost:3000/api/v1";
   const [allPlants, setAllPlants] = useState(gardens.plants);
 
@@ -44,7 +44,9 @@ function Gardens({ gardens }) {
     <div>
       <section className="my-garden-page">
         <h2 className="garden-name">{gardens.name}</h2>
-        <div className="all-plant-cards">{plantCards}</div>
+        <div className="all-plant-cards">
+          {allPlants.length === 0 ? <p>No Plants Saved Yet</p> : plantCards}
+        </div>
       </section>
     </div>
   );

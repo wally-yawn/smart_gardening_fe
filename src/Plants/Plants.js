@@ -13,7 +13,7 @@ function Plants({ id, name, image, description, deletePlant }) {
       <img src={image} alt={name} className="plant-image" />
       <p>{description}</p>
       {location.pathname === "/" && (
-        <SavePlant name={name} img_url={image} description={description} />
+        <SavePlant name={name} image={image} description={description} />
       )}
       <button onClick={handleDelete}>Delete Plant</button>
     </div>
