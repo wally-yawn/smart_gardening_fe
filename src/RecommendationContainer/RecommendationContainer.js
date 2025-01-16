@@ -6,9 +6,6 @@ function RecommendationContainer({ plantRecommendations, fetchGardenPlants }) {
   let allPlants;
 
   if (plantRecommendations?.data?.length > 0) {
-    console.log("recommendations: ", plantRecommendations);
-    console.log("data: ", plantRecommendations.data);
-    console.log("data[0]: ", plantRecommendations.data[0]);
     allPlants = plantRecommendations?.data?.map((plant) => {
       return (
         <Plants
@@ -24,8 +21,6 @@ function RecommendationContainer({ plantRecommendations, fetchGardenPlants }) {
   } else {
     allPlants = null;
   }
-
-  console.log("plantrecommendation: ", plantRecommendations.data);
 
   return (
     <section className="recommendations-container">
