@@ -15,7 +15,9 @@ function Plants({ id, name, image, description, deletePlant }) {
       {location.pathname === "/" && (
         <SavePlant name={name} img_url={image} description={description} />
       )}
-      <button onClick={handleDelete}>Delete Plant</button>
+              {deletePlant && (
+          <button onClick={handleDelete}>Delete Plant</button>
+        )}
     </div>
   );
 }

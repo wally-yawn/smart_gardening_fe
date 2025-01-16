@@ -1,0 +1,16 @@
+.recommendations-container {
+  border: thick black;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.plant-cards {
+  background-color: lightblue;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding: 1em;
+  width: 100%;
+  box-sizing: border-box;
+}

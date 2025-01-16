@@ -1,8 +1,8 @@
 import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
+import BASE_URL from '../config/config';
 
 function GardenInput({ gardenId, setRecommendations }) {
-  const url = 'http://localhost:3000/api/v1'
   const [error, setError] = useState(null);
 
   const [gardenInfo, setGardenInfo] = useState({
@@ -17,11 +17,13 @@ function GardenInput({ gardenId, setRecommendations }) {
   const [hasGarden, setHasGarden] = useState(false);
 
   useEffect(() => {
+    console.log("Initial gardenInfo state: ", gardenInfo)
     const fetchGarden = async () => {
       try {
-        const response = await fetch(`http://localhost:3000/api/v1/gardens/1`);
+        const response = await fetch(`${BASE_URL}/gardens/1`);
         if (response.ok) {
           const gardenData = await response.json();
+          console.log("api response: ",gardenData)
           setGardenInfo({
             name: gardenData.name || "",
             zip_code: gardenData.zip_code || "",
@@ -62,7 +64,7 @@ function GardenInput({ gardenId, setRecommendations }) {
       purpose: gardenInfo.purpose,
     };
 
-    fetch(`${url}/recommendation?` + new URLSearchParams(params), {
+    fetch(`${BASE_URL}/recommendation?` + new URLSearchParams(params), {
       method: 'GET',
       headers: { 'Content-Type': 'application/json'},
     })
@@ -84,8 +86,8 @@ function GardenInput({ gardenId, setRecommendations }) {
     try {
       const method = hasGarden ? "PATCH" : "POST";
       const saveUrl = hasGarden
-      ? `${url}/gardens/1`
-      : `${url}/gardens`;
+      ? `${BASE_URL}/gardens/1`
+      : `${BASE_URL}/gardens`;
 
       const response = await fetch(saveUrl, {
         method,
@@ -203,8 +205,8 @@ function GardenInput({ gardenId, setRecommendations }) {
             </select>
           </label>
         </div>
-        <button type="submit" onClick={searchRecommendations}>Search</button>
-        <button type="button" onClick={handleSaveOrEdit}>{hasGarden ? "Edit" : "Save"}</button>
+        <button className='search-button' type="submit" onClick={searchRecommendations}>Search</button>
+        <button className='edit-save-button' type="button" onClick={handleSaveOrEdit}>{hasGarden ? "Edit" : "Save"}</button>
       </form>
     </section>
   );
