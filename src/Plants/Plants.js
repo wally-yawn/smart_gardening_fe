@@ -2,6 +2,7 @@ import React from "react";
 import "./Plants.css";
 import SavePlant from "../SavePlant/SavePlant";
 import { useLocation } from "react-router-dom";
+
 function Plants({
   id,
   name,
