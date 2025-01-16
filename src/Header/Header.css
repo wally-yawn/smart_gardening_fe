@@ -36,6 +36,31 @@
   background-color: #45a049;
 }
 
+@media (min-width: 768px) and (max-width: 1024px) {
+  .header {
+    flex-direction: row; 
+    justify-content: space-around; 
+    padding: 10px 30px; 
+  }
+
+  .animation-container {
+    flex-direction: row; 
+    align-items: center;
+  }
+
+  .header-title {
+    font-size: 1.8rem; 
+    padding-left: 10px; 
+  }
+
+  .home-btn {
+    font-size: 1rem;
+    margin-left: 5%; 
+    margin-right: 5%;
+    padding: 8px 16px; 
+  }
+}
+
 @media (max-width: 768px) {
   .header {
     padding: 10px 20px; 
