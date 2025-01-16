@@ -1,19 +1,14 @@
-import React, { useState, useEffect } from "react";import "./Gardens.css";
+import React, { useState, useEffect } from "react";
+import "./Gardens.css";
 import Plants from "../Plants/Plants";
-import BASE_URL from '../config/config';
+import BASE_URL from "../config/config";
 
-function Gardens({ gardens }) {
+function Gardens({ gardens, fetchGardenPlants }) {
   const [allPlants, setAllPlants] = useState(gardens.plants);
 
-  const testPlants = [
-    { id: 1, name: "Tomato", img_url: "https://upload.wikimedia.org/wikipedia/commons/8/89/Tomato_je.jpg", description: "A popular vegetable that thrives in full sun." },
-    { id: 2, name: "Carrot", img_url: "https://upload.wikimedia.org/wikipedia/commons/e/e6/Carrots.JPG", description: "A root vegetable that grows well in loamy soil." },
-  ];
-
   useEffect(() => {
-    setAllPlants(testPlants);
-  }, []);
-
+    setAllPlants(gardens.plants);
+  }, [gardens]);
   const removePlant = async (plantId) => {
     try {
       const response = await fetch(`${BASE_URL}/gardens/1/plants/${plantId}`, {
@@ -26,6 +21,7 @@ function Gardens({ gardens }) {
       if (response.ok) {
         setAllPlants(allPlants.filter((plant) => plant.id !== plantId));
         console.log(`Plant deleted successfully.`);
+        fetchGardenPlants();
       } else {
         console.error(`Failed to delete plant`);
       }
@@ -34,14 +30,16 @@ function Gardens({ gardens }) {
     }
   };
   const plantCards = allPlants.map((plant) => {
+    console.log("Plant card info", plant.id);
     return (
       <Plants
         id={plant.id}
         key={plant.id}
-        name={plant.name}
-        image={plant.img_url}
-        description={plant.description}
-        deletePlant={removePlant}  
+        name={plant.attributes.name}
+        image={plant.attributes.img_url}
+        description={plant.attributes.description}
+        deletePlant={removePlant}
+        fetchGardenPlants={fetchGardenPlants}
       />
     );
   });
@@ -50,7 +48,9 @@ function Gardens({ gardens }) {
     <div>
       <section className="my-garden-page">
         <h2 className="garden-name">{gardens.name}</h2>
-        <div className="all-plant-cards">{plantCards}</div>
+        <div className="all-plant-cards">
+          {allPlants.length === 0 ? <p>No Plants Saved Yet</p> : plantCards}
+        </div>
       </section>
     </div>
   );
