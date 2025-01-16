@@ -1,0 +1,11 @@
+{
+  "id": 1,
+  "name": "Vegetable Garden",
+  "zip_code": "80209",
+  "sunlight": "Full Sun",
+  "soil_type": "Loamy",
+  "water_needs": "High",
+  "purpose": "Food Production",
+  "created_at": "2025-01-15T20:43:08.574Z",
+  "updated_at": "2025-01-15T20:43:08.574Z"
+}
