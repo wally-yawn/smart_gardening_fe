@@ -18,11 +18,6 @@ function App() {
     plants: [],
   });
 
-  // const goToGarden = () => {
-  //   navigate("/mygarden");
-  //   fetchGardenPlants();
-  // };
-
   const fetchGardenPlants = async () => {
     try {
       const response = await fetch(`${url}/1/plants`);

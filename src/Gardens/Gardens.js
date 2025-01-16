@@ -6,6 +6,9 @@ import BASE_URL from "../config/config";
 function Gardens({ gardens, fetchGardenPlants }) {
   const [allPlants, setAllPlants] = useState(gardens.plants);
 
+  useEffect(() => {
+    setAllPlants(gardens.plants);
+  }, [gardens]);
   const removePlant = async (plantId) => {
     try {
       const response = await fetch(`${BASE_URL}/gardens/1/plants/${plantId}`, {
