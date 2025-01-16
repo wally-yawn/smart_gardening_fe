@@ -10,7 +10,6 @@ function Plants({
   deletePlant,
   fetchGardenPlants,
 }) {
-  console.log("Plants fcn", fetchGardenPlants);
   const location = useLocation();
   const handleDelete = () => {
     deletePlant(id);

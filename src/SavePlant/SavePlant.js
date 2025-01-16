@@ -3,7 +3,6 @@ import "./SavePlant.css";
 import BASE_URL from "../config/config";
 
 function SavePlant({ name, img_url, description, fetchGardenPlants }) {
-  console.log("Save plants fcn", name);
   const [buttonText, setButtonText] = useState("Save Plant");
   const plantData = {
     name: name,
