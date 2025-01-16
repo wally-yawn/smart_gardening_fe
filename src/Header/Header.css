@@ -1,8 +1,48 @@
 .header {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-between;
   align-items: center; 
-  padding: 20px;
+  padding: 10px 40px; 
+  color: #fff;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+.animation-container {
+  display: flex;
+  align-items: center;
+}
 
+.header-title {
+  font-size: 2rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+  margin: 0;
+}
+
+@media (max-width: 768px) {
+  .header {
+    padding: 10px 20px; 
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .animation-container {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .lottie-animation-left {
+    margin-bottom: 5px; 
+    width: 40px; 
+    height: 40px; 
+  }
+
+  .header-title {
+    font-size: 1.8rem; 
+  }
+
+  .home-btn {
+    padding: 6px 12px; 
+    font-size: 0.9rem;
+  }
+}
