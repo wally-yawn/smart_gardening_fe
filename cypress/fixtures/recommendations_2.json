@@ -1,0 +1,32 @@
+{
+  "id": "mock-chatcmpl-123",
+  "data": [
+      {
+          "index": 1,
+          "type": "plant",
+          "attributes": {
+              "name": "Catnip",
+              "description": "Did you know this isn't a small plant? Cuz I didn't when I planted it",
+              "image": "https://example.com/mock-catnip.jpg"
+          }
+      },
+      {
+          "index": 2,
+          "type": "plant",
+          "attributes": {
+              "name": "Rosemary",
+              "description": "Goes well with everything",
+              "image": "https://example.com/mock-rosemary.jpg"
+          }
+      },
+      {
+        "index": 2,
+        "type": "plant",
+        "attributes": {
+            "name": "Beets",
+            "description": "Who doesn't love beets?",
+            "image": "https://example.com/mock-beets.jpg"
+        }
+    }
+  ]
+}
