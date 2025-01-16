@@ -1,18 +1,24 @@
 .header {
   display: flex;
-  justify-content: space-evenly;  
-  align-items: center; 
-  padding: 10px 40px; 
-  color: #fff;
-  width: 100%;  
-}
-.animation-container {
-  display: flex;
+  justify-content: center; 
   align-items: center;
-  justify-content: center;  
+  padding: 20px 40px; 
+  width: 100%;
+  height: 200px; 
+  background-image: url('../assets/header-bg.jpg');
+  background-size: cover; 
+  background-position:  center;
+  background-repeat: no-repeat; 
+  min-height: 40vh;
+  position: relative;
 }
 
+
 .header-title {
+  position: absolute;
+  z-index: 1;
+  background-color: transparent;
+  color:floralwhite;
   font-size: 2rem;
   font-weight: bold;
   letter-spacing: 1px;
@@ -22,6 +28,9 @@
 }
 
 .home-btn {
+  position: absolute;
+  top: 20px; 
+  right: 20px;
   padding: 10px 20px;
   font-size: 1rem;
   background-color: tan; 
@@ -32,6 +41,13 @@
   margin-right: 10%;
 } 
 
+.lottie-animation-container {
+  
+  background: transparent;
+  width: 250px;
+  height: 250px;
+  margin-right: auto;
+}
 .home-btn:hover {
   background-color: #45a049;
 }
