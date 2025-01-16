@@ -36,6 +36,5 @@ describe('recommendations', () => {
     .get('.plant-cards > :nth-child(2) > img').should('have.attr', 'src', 'https://example.com/mock-basil.jpg')
     .get('.plant-cards > :nth-child(2) > img').should('have.attr', 'alt', 'Basil')
     .get('.plant-cards > :nth-child(2) > p').contains('Aromatic herb thriving in full sun with moderate watering.')
-
   })
 })
