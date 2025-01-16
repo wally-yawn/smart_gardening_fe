@@ -44,6 +44,19 @@ function GardenInput({ gardenId, setRecommendations }) {
     fetchGarden();
   }, []);
 
+  const isZipValid = (zip) => /^\d{5}(-\d{4})?$/.test(zip);
+
+  const areDropdownsValid = (
+      gardenInfo.name &&
+      gardenInfo.sunlight &&
+      gardenInfo.soil_type &&
+      gardenInfo.water_needs &&
+      gardenInfo.purpose
+    ) || false;
+  };
+
+  const isSearchEnabled = isZipValid(gardenInfo.zip_code) && areDropdownsValid;
+  
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setGardenInfo({
