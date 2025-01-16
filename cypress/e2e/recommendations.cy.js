@@ -16,8 +16,6 @@ describe('recommendations', () => {
       fixture: 'recommendations_2'
     })
 
-
-
     cy.visit('http://localhost:3001/')
     })
 
