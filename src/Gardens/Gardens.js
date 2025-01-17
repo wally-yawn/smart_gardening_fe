@@ -11,7 +11,7 @@ function Gardens({ gardens, fetchGardenPlants }) {
   }, [gardens]);
   const removePlant = async (plantId) => {
     try {
-      const response = await fetch(`${config.baseUrl}/gardens/1/plants/${plantId}`, {
+      const response = await fetch(`${config.baseUrl}/gardens/${config.gardenId}/plants/${plantId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",

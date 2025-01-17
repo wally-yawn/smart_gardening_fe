@@ -20,7 +20,7 @@ function GardenInput({ gardenId, setRecommendations }) {
   useEffect(() => {
     const fetchGarden = async () => {
       try {
-        const response = await fetch(`${config.baseUrl}/gardens/1`);
+        const response = await fetch(`${config.baseUrl}/gardens/${config.gardenId}`);
         if (response.ok) {
           const gardenData = await response.json();
           setGardenInfo({
@@ -105,7 +105,7 @@ function GardenInput({ gardenId, setRecommendations }) {
     try {
       const method = hasGarden ? "PATCH" : "POST";
       const saveUrl = hasGarden
-      ? `${config.baseUrl}/gardens/1`
+      ? `${config.baseUrl}/gardens/${config.gardenId}`
       : `${config.baseUrl}/gardens`;
 
       const response = await fetch(saveUrl, {

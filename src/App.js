@@ -6,9 +6,9 @@ import Gardens from "./Gardens/Gardens";
 import RecommendationContainer from "./RecommendationContainer/RecommendationContainer";
 import React, { useState, useEffect } from "react";
 import { Link, Routes, Route } from "react-router-dom";
+import config from "./config/config";
 
 function App() {
-  const url = "http://localhost:3000/api/v1";
   const [myGardens, setMyGardens] = useState({
     name: "My Garden",
     plants: [],
@@ -20,7 +20,7 @@ function App() {
 
   const fetchGardenPlants = async () => {
     try {
-      const response = await fetch(`${url}/1/plants`);
+      const response = await fetch(`${config.baseUrl}/${config.gardenId}/plants`);
       if (response.ok) {
         const data = await response.json();
         setMyGardens((prevGardens) => ({
