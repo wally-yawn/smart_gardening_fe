@@ -15,17 +15,23 @@ const Header = () => {
   return (
     <>
       <header className="header">
-        
+        <section className='animation-container'>
+
         <DotLottieReact
             src="https://lottie.host/2d329e8e-3849-48e2-a940-4939e1314e4c/M1alAvpStN.lottie"
             loop
             autoplay
             className="lottie-animation-container"
           />
-          <h1 className="header-title">
+        </section>
+        <section className="header-title">
+
+          <h1>
             {mainPage ? "Welcome to Smart Gardening" : "What a Wonderful Garden"}
           </h1>
        
+        </section>
+        
 
         {!mainPage && (
           <button onClick={goHome} className="home-btn">

@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  justify-content: center; 
+  justify-content: space-between; 
   align-items: center;
   padding: 20px 40px; 
   width: 100%;
@@ -10,13 +10,10 @@
   background-position:  center;
   background-repeat: no-repeat; 
   min-height: 40vh;
-  position: relative;
 }
 
 
 .header-title {
-  position: absolute;
-  z-index: 1;
   background-color: transparent;
   color:floralwhite;
   font-size: 2rem;
@@ -25,10 +22,11 @@
   margin: 0;
   padding-left: 20px;
   text-align: center;
+  z-index: 1;
+  position: relative;
 }
 
 .home-btn {
-  position: absolute;
   top: 20px; 
   right: 20px;
   padding: 10px 20px;
@@ -82,22 +80,25 @@
     padding: 10px 20px; 
     flex-direction: column;
     text-align: center;
+    height: auto;
   }
 
   .animation-container {
     flex-direction: column;
     align-items: center;
-    margin-bottom: 20px;  
   }
 
   .lottie-animation-left {
     width: 80px;  
     height: 80px; 
+    margin-bottom: 0;
+    
   }
 
   .header-title {
     font-size: 1.8rem; 
-    margin-bottom: auto; 
+    margin-top: 0;
+    margin-bottom: 20vh; 
   }
 
   .home-btn {
