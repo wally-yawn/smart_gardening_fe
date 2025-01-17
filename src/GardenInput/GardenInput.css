@@ -79,7 +79,7 @@ button:hover {
 @media (max-width: 768px) {
   .garden-form-section {
     padding: 15px;
-    max-width: 90%;
+    max-width: 100%;
   }
 
   h1 {
