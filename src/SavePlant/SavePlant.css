@@ -1,0 +1,4 @@
+.button-inactive {
+  color: gray;
+  cursor: not-allowed;
+}

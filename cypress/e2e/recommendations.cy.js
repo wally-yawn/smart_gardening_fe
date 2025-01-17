@@ -82,8 +82,13 @@ describe('recommendations', () => {
     // check that save is disabled
   })
 
-  xit('cannot save a plant twice', () => {
-
+  it('cannot save a plant twice', () => {
+    cy.get('.search-button').click()
+    .get('.plant-cards > :nth-child(1) > .button-active').contains('Save Plant')
+    .get('.plant-cards > :nth-child(1) > .button-active').should('not.be.disabled')
+    .get('.plant-cards > :nth-child(1) > .button-active').click()
+    .get('.plant-cards > :nth-child(1) > .button-inactive').contains('Plant Saved')
+    .get('.plant-cards > :nth-child(1) > .button-inactive').should('be.disabled')
   })
 
   xit('can handle not-ok responses from the server', () => {
