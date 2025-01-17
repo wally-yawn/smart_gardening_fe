@@ -20,6 +20,8 @@ function App() {
 
   const fetchGardenPlants = async () => {
     try {
+      var debugurl = `${config.baseUrl}/${config.gardenId}/plants`
+      console.log('config.baseurl: ', config.baseUrl)
       const response = await fetch(`${config.baseUrl}/${config.gardenId}/plants`);
       if (response.ok) {
         const data = await response.json();
