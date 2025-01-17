@@ -1,6 +1,8 @@
 import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
+import BASE_URL from '../config/config';
 import config from '../config/config';
+import { Tooltip } from "react-tooltip";
 
 function GardenInput({ gardenId, setRecommendations }) {
   const [error, setError] = useState(null);
@@ -130,6 +132,13 @@ function GardenInput({ gardenId, setRecommendations }) {
 
   return (
     <section className="garden-form-section">
+      <span 
+        data-tooltip-id="my-tooltip" 
+        data-tooltip-content="Please enter a valid 5-digit zip code and select your options from the drop down menus."
+      >
+        <a className="info-icon">  ℹ️</a>
+      </span>
+      <Tooltip id="my-tooltip" />
       <h1>Input Garden Info</h1>
       <form className="garden-form">
         <div className="form-row">
