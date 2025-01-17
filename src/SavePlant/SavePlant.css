@@ -1,0 +1,11 @@
+.button-disabled{
+  background-color: lightgray;
+  color: black;
+  cursor: default;
+}
+
+button:disabled:hover {
+  background-color: lightgray;
+  color: black;
+  cursor: default;
+}
