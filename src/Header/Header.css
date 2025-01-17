@@ -1,6 +1,6 @@
 .header {
   display: flex;
-  justify-content: space-between; 
+  justify-content: space-evenly; 
   align-items: center;
   padding: 20px 40px; 
   width: 100%;
@@ -16,10 +16,10 @@
 .header-title {
   background-color: transparent;
   color:floralwhite;
-  font-size: 2rem;
+  font-size: 1.3rem;
   font-weight: bold;
   letter-spacing: 1px;
-  margin: 0;
+  margin-right: 30vh;
   padding-left: 20px;
   text-align: center;
   z-index: 1;
@@ -63,8 +63,9 @@
   }
 
   .header-title {
-    font-size: 1.8rem; 
+    font-size: 1.3rem; 
     padding-left: 10px; 
+    margin-left: 0vh;
   }
 
   .home-btn {
@@ -96,8 +97,8 @@
   }
 
   .header-title {
-    font-size: 1.8rem; 
-    margin-top: 0;
+    font-size: 1.3rem; 
+    margin-right: 0vh;
     margin-bottom: 20vh; 
   }
 
