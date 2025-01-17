@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SavePlant.css";
-import BASE_URL from "../config/config";
+import config from "../config/config";
 
 function SavePlant({ name, img_url, description, fetchGardenPlants }) {
   const [buttonText, setButtonText] = useState("Save Plant");
@@ -11,8 +11,7 @@ function SavePlant({ name, img_url, description, fetchGardenPlants }) {
   };
   const handlePlant = async () => {
     try {
-      console.log("plantData", plantData);
-      const response = await fetch(`${BASE_URL}/1`, {
+      const response = await fetch(`${config.baseUrl}/1`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
@@ -21,7 +20,6 @@ function SavePlant({ name, img_url, description, fetchGardenPlants }) {
       });
 
       if (response.ok) {
-        console.log("Plant saved successfully");
         setButtonText("Plant Saved");
         fetchGardenPlants();
       } else {

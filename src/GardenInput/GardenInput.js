@@ -1,6 +1,7 @@
 import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
 import BASE_URL from '../config/config';
+import config from '../config/config';
 import { Tooltip } from "react-tooltip";
 
 function GardenInput({ gardenId, setRecommendations }) {
@@ -17,13 +18,11 @@ function GardenInput({ gardenId, setRecommendations }) {
   const [hasGarden, setHasGarden] = useState(false);
 
   useEffect(() => {
-    console.log("Initial gardenInfo state: ", gardenInfo)
     const fetchGarden = async () => {
       try {
-        const response = await fetch(`${BASE_URL}/gardens/1`);
+        const response = await fetch(`${config.baseUrl}/gardens/1`);
         if (response.ok) {
           const gardenData = await response.json();
-          console.log("api response: ",gardenData)
           setGardenInfo({
             name: gardenData.name || "",
             zip_code: gardenData.zip_code || "",
@@ -74,7 +73,6 @@ function GardenInput({ gardenId, setRecommendations }) {
     setError(null);
     setSuccessMessage("Searching for recommendations...");
     setTimeout(() => setSuccessMessage(null), 5000);
-    console.log("gardenInfo: ", gardenInfo);
     const params = {
       zip_code: gardenInfo.zip_code,
       sunlight: gardenInfo.sunlight,
@@ -83,7 +81,7 @@ function GardenInput({ gardenId, setRecommendations }) {
       purpose: gardenInfo.purpose,
     };
 
-    fetch(`${BASE_URL}/recommendation?` + new URLSearchParams(params), {
+    fetch(`${config.baseUrl}/recommendation?` + new URLSearchParams(params), {
       method: 'GET',
       headers: { 'Content-Type': 'application/json'},
     })
@@ -107,8 +105,8 @@ function GardenInput({ gardenId, setRecommendations }) {
     try {
       const method = hasGarden ? "PATCH" : "POST";
       const saveUrl = hasGarden
-      ? `${BASE_URL}/gardens/1`
-      : `${BASE_URL}/gardens`;
+      ? `${config.baseUrl}/gardens/1`
+      : `${config.baseUrl}/gardens`;
 
       const response = await fetch(saveUrl, {
         method,

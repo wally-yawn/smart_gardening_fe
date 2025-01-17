@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Gardens.css";
 import Plants from "../Plants/Plants";
-import BASE_URL from "../config/config";
+import config from "../config/config";
 
 function Gardens({ gardens, fetchGardenPlants }) {
   const [allPlants, setAllPlants] = useState(gardens.plants);
@@ -11,7 +11,7 @@ function Gardens({ gardens, fetchGardenPlants }) {
   }, [gardens]);
   const removePlant = async (plantId) => {
     try {
-      const response = await fetch(`${BASE_URL}/gardens/1/plants/${plantId}`, {
+      const response = await fetch(`${config.baseUrl}/gardens/1/plants/${plantId}`, {
         method: "DELETE",
         headers: {
           "Content-Type": "application/json",
@@ -20,7 +20,6 @@ function Gardens({ gardens, fetchGardenPlants }) {
 
       if (response.ok) {
         setAllPlants(allPlants.filter((plant) => plant.id !== plantId));
-        console.log(`Plant deleted successfully.`);
         fetchGardenPlants();
       } else {
         console.error(`Failed to delete plant`);
@@ -30,7 +29,6 @@ function Gardens({ gardens, fetchGardenPlants }) {
     }
   };
   const plantCards = allPlants.map((plant) => {
-    console.log("Plant card info", plant.id);
     return (
       <Plants
         id={plant.id}
