@@ -8,9 +8,18 @@ describe('recommendations', () => {
       fixture: 'plants'
     })
 
+    cy.intercept('GET', 'http://localhost:3000/api/v1/1/plants', {
+      fixture: 'plants'
+    })
+
     cy.intercept('GET', 'http://localhost:3000/api/v1/recommendation?zip_code=80209&sunlight=Full+Sun&soil_type=Loamy&water_needs=High&purpose=Food+Production', {
       fixture: 'recommendations'
     })
+
+    cy.intercept('GET', 'http://localhost:3000/api/v1/recommendation?zip_code=80221&sunlight=Shade&soil_type=Silty&water_needs=Moderate&purpose=Recreation', {
+      fixture: 'recommendations_2'
+    })
+
 
     cy.intercept('GET', 'http://localhost:3000/api/v1/recommendation?zip_code=80221&sunlight=Shade&soil_type=Silty&water_needs=Moderate&purpose=Recreation', {
       fixture: 'recommendations_2'
@@ -24,6 +33,7 @@ describe('recommendations', () => {
     .get('.my-garden-button').should('exist')
     .get('.garden-form-section > h1').contains('Input Garden Info')
     .get('input[name="zip_code"]').should('have.value','80209')
+    .get('input[name="zip_code"]').should('have.value','80209')
     .get('select[name="name"]').should('have.value', 'Vegetable Garden')
     .get('select[name="soil_type"]').should('have.value', 'Loamy')
     .get('select[name="sunlight"]').should('have.value', 'Full Sun')
@@ -33,6 +43,7 @@ describe('recommendations', () => {
     .get('.default-message').contains('Enter your garden information and click Search to get recommendations!')
   })
 
+  it('shows recommendations after clicking Search with the default garden', () => {
   it('shows recommendations after clicking Search with the default garden', () => {
     cy.get('.search-button').click()
     .get('.plant-cards').find('.plant-card').should('have.lengthOf', 2)
