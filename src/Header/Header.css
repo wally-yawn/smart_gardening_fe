@@ -18,25 +18,24 @@
   color:floralwhite;
   font-size: 1.3rem;
   font-weight: bold;
-  letter-spacing: 1px;
+  margin-left: 10vh;
   margin-right: 30vh;
-  padding-left: 20px;
   text-align: center;
   z-index: 1;
   position: relative;
 }
 
 .home-btn {
-  top: 20px; 
-  right: 20px;
   padding: 10px 20px;
   font-size: 1rem;
   background-color: tan; 
   color: white;
   cursor: pointer;
   display: flex;
-  margin-left: 20%;
-  margin-right: 10%;
+  margin-right: center;
+  justify-content: center;
+  margin-right: 10vh;
+  position: static;
 } 
 
 .lottie-animation-container {
@@ -44,7 +43,7 @@
   background: transparent;
   width: 250px;
   height: 250px;
-  margin-right: auto;
+  /* margin-right: auto; */
 }
 .home-btn:hover {
   background-color: #45a049;
