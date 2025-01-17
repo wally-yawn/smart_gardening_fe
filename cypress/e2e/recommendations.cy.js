@@ -24,6 +24,7 @@ describe('recommendations', () => {
     .get('.my-garden-button').should('exist')
     .get('.garden-form-section > h1').contains('Input Garden Info')
     .get('input[name="zip_code"]').should('have.value','80209')
+    .get('input[name="zip_code"]').should('have.value','80209')
     .get('select[name="name"]').should('have.value', 'Vegetable Garden')
     .get('select[name="soil_type"]').should('have.value', 'Loamy')
     .get('select[name="sunlight"]').should('have.value', 'Full Sun')
@@ -70,20 +71,45 @@ describe('recommendations', () => {
     .get('.plant-cards > :nth-child(3) > p').contains("Who doesn't love beets?")
   })
 
-  xit('cannot search if the zip code is blank', () => {
+  it('cannot search if the any fields are blank', () => {
     cy.get('input[name="zip_code"]').clear()
-    // check that submit is disabled
-    // check that save is disabled
+    .get('.search-button').click()
+    .get('.error').contains('Please complete all fields before searching.')
+    .get('input[name="zip_code"]').type('80221')
+    .get('select[name="name"]').select('Select a Garden Name')
+    .get('.search-button').click()
+    .get('.error').contains('Please complete all fields before searching.')
+    .get('select[name="name"]').select('Mixed Garden')
+    .get('select[name="soil_type"]').select('Select Soil Type')
+    .get('.search-button').click()
+    .get('.error').contains('Please complete all fields before searching.')
+    .get('select[name="soil_type"]').select('Silty')
+    .get('select[name="sunlight"]').select('Select Sunlight')
+    .get('.search-button').click()
+    .get('.error').contains('Please complete all fields before searching.')
+    .get('select[name="sunlight"]').select('Shade')
+    .get('select[name="water_needs"]').select('Select Water Needs')
+    .get('.search-button').click()
+    .get('.error').contains('Please complete all fields before searching.')
+    .get('select[name="water_needs"]').select('Moderate')
+    .get('select[name="purpose"]').select('Select Purpose')
+    .get('.search-button').click()
+    .get('.error').contains('Please complete all fields before searching.')
   })
 
-  xit('cannot search if the zip code is invalid', () => {
+
+  xit('cannot update if any fields are blank', () => {
     cy.get('input[name="zip_code"]').clear()
-    // check that submit is disabled
-    // check that save is disabled
+    // this needs to handle in the front end
   })
 
-  xit('cannot save a plant twice', () => {
-
+  it('cannot save a plant twice', () => {
+    cy.get('.search-button').click()
+    .get('.plant-cards > :nth-child(1) > .button-enabled').contains('Save Plant')
+    .get('.plant-cards > :nth-child(1) > .button-enabled').should('not.be.disabled')
+    .get('.plant-cards > :nth-child(1) > .button-enabled').click()
+    .get('.plant-cards > :nth-child(1) > .button-disabled').contains('Plant Saved')
+    .get('.plant-cards > :nth-child(1) > .button-disabled').should('be.disabled')
   })
 
   xit('can handle not-ok responses from the server', () => {

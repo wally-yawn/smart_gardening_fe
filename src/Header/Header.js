@@ -6,7 +6,14 @@ import './Header.css';
 const Header = () => {
   const navigate = useNavigate();
   const page = useLocation();
-  const mainPage = page.pathname === "/"; 
+
+  const isMainPage = page.pathname === "/";
+  const isGardenPage = page.pathname === "/mygarden";
+  const title = isMainPage
+    ? "Welcome to Smart Gardening"
+    : isGardenPage
+    ? "What a Wonderful Garden"
+    : "Oops! This page doesn’t exist. 🌱";
 
   const goHome = () => {
     navigate('/');
@@ -27,13 +34,13 @@ const Header = () => {
         <section className="header-title">
 
           <h1>
-            {mainPage ? "Welcome to Smart Gardening" : "What a Wonderful Garden"}
+            {title}
           </h1>
-       
+        
         </section>
         
 
-        {!mainPage && (
+        {!isMainPage && (
           <button onClick={goHome} className="home-btn">
             Go Home
           </button>

@@ -4,6 +4,7 @@ import config from "../config/config";
 
 function SavePlant({ name, img_url, description, fetchGardenPlants }) {
   const [buttonText, setButtonText] = useState("Save Plant");
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const plantData = {
     name: name,
     img_url: img_url,
@@ -21,6 +22,7 @@ function SavePlant({ name, img_url, description, fetchGardenPlants }) {
 
       if (response.ok) {
         setButtonText("Plant Saved");
+        setButtonDisabled(true);
         fetchGardenPlants();
       } else {
         const errorData = await response.json();
@@ -31,7 +33,7 @@ function SavePlant({ name, img_url, description, fetchGardenPlants }) {
       console.error("Error saving plant:", error);
     }
   };
-  return <button onClick={handlePlant}>{buttonText}</button>;
+  return <button disabled={buttonDisabled} className={buttonDisabled ? "button-disabled" : "button-enabled"} onClick={handlePlant}>{buttonText}</button>;
 }
 
 export default SavePlant;
