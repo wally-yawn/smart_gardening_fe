@@ -1,14 +1,45 @@
-.plant-image {
-  width: 100px;
-  height: auto;
-}
-
 .plant-card {
   display: flex;
   flex-direction: column;
-  border-style: solid;
-  border-color: green;
-  margin: 10px;
   justify-content: center;
   align-items: center;
+  border: 2px solid black;
+  border-radius: 8px;
+  padding: 1em;
+  background-color:rgb(149, 112, 63);
+  margin: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.plant-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+}
+
+.plant-image {
+  width: 120px; /* Slightly larger for better visibility */
+  height: auto;
+  border-radius: 6px;
+  margin-bottom: 1em;
+}
+
+.plant-card h3 {
+  font-size: 1.2em;
+  color: black;
+  margin: 0.5em 0;
+  text-align: center;
+}
+
+.plant-card p {
+  font-size: 0.9em;
+  color: black;
+  text-align: center;
+  margin: 0.5em 0;
+}
+
+@media (max-width: 768px) {
+  .plant-image {
+    width: 100px; /* Adjusted for smaller screens */
+  }
 }
