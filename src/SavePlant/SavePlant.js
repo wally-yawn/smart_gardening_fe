@@ -11,7 +11,7 @@ function SavePlant({ name, img_url, description, fetchGardenPlants }) {
   };
   const handlePlant = async () => {
     try {
-      const response = await fetch(`${config.baseUrl}/1`, {
+      const response = await fetch(`${config.baseUrl}/${config.gardenId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",
