@@ -1,4 +1,11 @@
-.button-inactive {
-  color: gray;
-  cursor: not-allowed;
+.button-disabled{
+  background-color: lightgray;
+  color: black;
+  cursor: default;
+}
+
+button:disabled:hover {
+  background-color: lightgray;
+  color: black;
+  cursor: default;
 }

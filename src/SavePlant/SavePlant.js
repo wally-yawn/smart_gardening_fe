@@ -4,13 +4,12 @@ import config from "../config/config";
 
 function SavePlant({ name, img_url, description, fetchGardenPlants }) {
   const [buttonText, setButtonText] = useState("Save Plant");
-  const [buttonActive, setButtonActive] = useState(true);
+  const [buttonDisabled, setButtonDisabled] = useState(false);
   const plantData = {
     name: name,
     img_url: img_url,
     description: description,
   };
-
   const handlePlant = async () => {
     try {
       const response = await fetch(`${config.baseUrl}/1`, {
@@ -23,7 +22,7 @@ function SavePlant({ name, img_url, description, fetchGardenPlants }) {
 
       if (response.ok) {
         setButtonText("Plant Saved");
-        setButtonActive(false);
+        setButtonDisabled(true);
         fetchGardenPlants();
       } else {
         const errorData = await response.json();
@@ -34,7 +33,7 @@ function SavePlant({ name, img_url, description, fetchGardenPlants }) {
       console.error("Error saving plant:", error);
     }
   };
-  return <button className={buttonActive ? "button-active" : "button-inactive"} onClick={handlePlant}>{buttonText}</button>;
+  return <button disabled={buttonDisabled} className={buttonDisabled ? "button-disabled" : "button-enabled"} onClick={handlePlant}>{buttonText}</button>;
 }
 
 export default SavePlant;
