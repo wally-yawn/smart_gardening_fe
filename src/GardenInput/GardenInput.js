@@ -143,7 +143,6 @@ function GardenInput({ gardenId, setRecommendations }) {
       </span>
       <Tooltip id="my-tooltip" />
       <h1>Input Garden Info</h1>
-      {error && <h2>{error}</h2>}
       <form className="garden-form">
         <div className="form-row">
           <label>
