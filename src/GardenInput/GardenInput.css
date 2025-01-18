@@ -1,7 +1,7 @@
 .garden-form-section {
   padding: 20px;
   border: 1px solid #ccc;
-  background-color: tan ;
+  background-color: rgb(149, 112, 63) ;
   border-radius: 10px;
   max-width: 100%;
 }
@@ -16,14 +16,14 @@
 .form-row {
   display: flex;
   justify-content: space-between;
-  background-color: tan;
+  background-color:rgb(149, 112, 63);
 
 }
 h1 {
   text-align: center;
   font-size: 2em;
   margin-bottom: 20px;
-  color: floralwhite;
+  color:  #dde7c7;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
 
 
@@ -34,10 +34,10 @@ input, select {
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
-  background-color: #fff;
+  background-color: #3a3535;
   box-sizing: border-box;
   font-size: 1rem;
-  color: #333;
+  color: #dde7c7;
 } 
 
 input:focus, select:focus {
@@ -57,11 +57,10 @@ button {
   font-size: 1rem;
   font-weight: bold;
   background-color: #333;;
-  color: white;
+  color:  #dde7c7;
   border: none;
   border-radius: 4px;
   cursor: pointer;
-  transition: background-color 0.3s ease;
 
 }
 
