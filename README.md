@@ -73,24 +73,31 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 
 
 
-# Rancid Tomatillos
+# Smart Gardening
 
 ## Description
-Rancid Tomatillos is a movie information app that allows users to explore popular movies, view detailed information about each movie, and vote for their favorites. The app includes features such as:
-- A homepage displaying movie posters and titles.
-- A detailed view of each movie, showing genres, an overview, and more.
-- A functional search bar for live filtering of movies by title.
-- Voting functionality for users to upvote or downvote movies.
+Smart Gardening is a beginner gardening app that allows users to enter their information in the Input Garden Info form. Once the user clicks search, the app will return 2-3 plants based on the information they provided. The zip code is used to determine the users Plant Hardiness Zone. The other drop down menus are related to what type of plants they want returned. The type of soil they will be using, how much sunlight the plant will get, how much watering needs they are able to provide, and the purpose of the plants ranging from food production to aesthetic. The user will then be able to save those plants and can be viewed by clicking the "My Garden" button. 
 
-The app is built using React and leverages React Router for navigation. It consumes data from a backend API to fetch movie details and updates.
-The work on the project was completed over the course of 8 days.
+The app includes features such as:
+- A homepage displaying our app mascot, Plantie, in the form of an animation.
+- A form where users can enter their infomation necessary to return plant suggestions.
+- A Recommendations section that displays the returned plants with an image and brief description.
+- A "Save Plant" button so the users can save a plant to their garden.
+- A "My Garden" button where users can view their saved plants from their search or previous searches.
+- A button to delete saved plants if the user decides to.
+
+The app is built using React and leverages React Router for navigation. It sends user provided data from the input form to the backend to populate a prompt which is then sent to OpenAI API. Once that response is successful, the returned data is then sent to Google Cloud API via a custom configured search engine. The information returned from the Google Cloud API is displayed for the user with the name of the plant, an image, and a brief description of that plant.
+
+The planning, preparation, and development of this project was completed over the course of 13 days.
 
 ## How to Use
-1. Visit the deployed site: [Rancid Tomatillos](https://lustrous-mochi-8ef560.netlify.app/).
-2. Browse the homepage to see a selection of movies.
-3. Click on a movie poster to view detailed information about the selected movie.
-4. Use the voting buttons to upvote or downvote movies.
-5. Navigate back to the homepage by clicking the "Home" button in the header.
+1. Visit the deployed site: [Smart Gardening](https://smart-gardening-fe.vercel.app/).
+2. Enter your information into the form starting with the zip code then the 5 drop down menus.
+3. Once you have entered all of the infomation click the search button below the drop down menus.
+4. Under Recommendations the app will return a selection of 2-3 plants based on the information you entered in the form.
+5. You can choose to save the plants by clicking the save button.
+6. Click the "My Garden" button to view your saved plants. You are given the option to delete a saved plant is desired.
+7. Click the "Go Home" at the top right of the page to return to the main page to begin a new search.
 
 ## Approaches to Building
 - **Component-Driven Development**: The app is structured with reusable components like `MoviesContainer`, `MovieDetails`, and `App` to improve manageability and scalability.
@@ -99,9 +106,10 @@ The work on the project was completed over the course of 8 days.
 - **Testing**: End-to-end testing with Cypress ensures the app functions correctly and meets user stories.
 
 ## Links
-- **Deployed Application**: [Rancid Tomatillos Live Site](https://lustrous-mochi-8ef560.netlify.app/)
-- **GitHub Repository**: [Rancid Tomatillos Repository](https://github.com/sethverrill/rancid-tomatillos)
-- **GitHub Project Board**: [Project Board](https://github.com/users/sethverrill/projects/3)
+- **Deployed Application**: [Smart Gardening Live Site](https://smart-gardening-fe.vercel.app/)
+- **GitHub Back End Repository**: [Smart Gardening Back End Repository](https://github.com/sethverrill/smart-gardening-be)
+- **GitHub Front End Repository**: [Smart Gardening Front End Repository](https://github.com/wally-yawn/smart_gardening_fe)
+- **GitHub Project Board**: [Project Board](https://github.com/users/sethverrill/projects/5)
 
 ## Architecture
 ![App Architecture Diagram](./architecture.png)
