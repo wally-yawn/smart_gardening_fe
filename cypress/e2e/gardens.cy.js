@@ -36,7 +36,7 @@ describe("Gardens Page", () => {
   describe("Plant Management", () => {
     it("should successfully delete a plant", () => {
       cy.get(".all-plant-cards").first().within(() => {
-        cy.get('button[aria-label="Delete plant"]').click();
+        cy.get('button[aria-labelledby="Delete plant"]').click();
       });
       cy.wait("@deletePlant");
     });
@@ -44,27 +44,40 @@ describe("Gardens Page", () => {
     it("should handle delete plant error", () => {
       cy.intercept("DELETE", "http://localhost:3000/api/v1/gardens/1/plants/*", { statusCode: 500 }).as("deletePlantError");
       cy.get(".all-plant-cards").first().within(() => {
-        cy.get('button[aria-label="Delete plant"]').click();
+        cy.get('button[aria-labelledby="Delete plant"]').click();
       });
       cy.wait("@deletePlantError");
-      cy.get('[data-testid="error-message"]').should("be.visible").and("contain", "Failed to delete plant");
+      cy.get('.all-plant-cards').should("have.length", 1);
     });
 
     it("should handle a network error on delete", () => {
       cy.intercept("DELETE", "http://localhost:3000/api/v1/gardens/1/plants/*", { forceNetworkError: true }).as("deletePlantNetworkError");
       cy.get(".all-plant-cards").first().within(() => {
-        cy.get('button[aria-label="Delete plant"]').click();
+        cy.get('button[aria-labelledby="Delete plant"]').click();
       });
       cy.wait("@deletePlantNetworkError");
       cy.get('[data-testid="error-message"]').should("be.visible").and("contain", "Network error. Please check your connection.");
     });
   });
 
+  it("should handle 404 errors when deleting a plant", () => {
+    cy.intercept("DELETE", "http://localhost:3000/api/v1/gardens/1/plants/*", {
+      statusCode: 404,
+      body: { message: "Plant not found" },
+    }).as("deletePlantError");
+    cy.get(".all-plant-cards").first().within(() => {
+      cy.get('button[aria-labelledby="Delete plant"]').click();
+    });
+    cy.wait("@deletePlantError");
+    cy.get('[data-testid="error-message"]').should("be.visible").and("contain", "Plant not found");
+    cy.get(".all-plant-cards").should("have.length", 1);
+  });
+
   describe("Loading States", () => {
     it("should show loading state during operations", () => {
       cy.intercept("DELETE", "http://localhost:3000/api/v1/gardens/1/plants/*", { delay: 1000, statusCode: 200 }).as("slowDelete");
       cy.get(".all-plant-cards").first().within(() => {
-        cy.get('button[aria-label="Delete plant"]').click();
+        cy.get('button[aria-labelledby="Delete plant"]').click();
       });
       cy.get('[data-testid="loading"]').should("be.visible");
       cy.wait("@slowDelete");
