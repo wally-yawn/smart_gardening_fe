@@ -113,7 +113,7 @@ describe('recommendations', () => {
   })
 
 
-  it('cannot update if the any fields are blank', () => {
+  it('cannot update if any fields are blank', () => {
     cy.get('input[name="zip_code"]').clear()
     .get('.edit-save-button').click()
     .get('.error').contains('Please complete all fields before saving or updating.')
