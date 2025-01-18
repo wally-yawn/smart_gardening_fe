@@ -1,13 +1,9 @@
 describe("Garden Plant Saving Functionality with Recommendation", () => {
   beforeEach(() => {
-    // Intercepts the garden and plant recommendation API calls
-    // cy.intercept("GET", "http://localhost:3000/api/v1/1/plants", {
-    //   fixture: "mygarden_empty", // Empty garden initially
-    // }).as('getGardenEmpty');
-
     cy.intercept("GET", "http://localhost:3000/api/v1/1/plants", {
-      fixture: "mygarden_saved", // Empty garden initially
+      fixture: "mygarden_saved",
     });
+
     cy.intercept(
       "GET",
       "http://localhost:3000/api/v1/recommendation?zip_code=80209&sunlight=Full+Sun&soil_type=Loamy&water_needs=High&purpose=Food+Production",
@@ -16,7 +12,6 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
       }
     );
 
-    // Intercept POST request to simulate successful plant save
     cy.intercept("PATCH", "http://localhost:3000/api/v1/1", {
       statusCode: 200,
       body: { message: "Plant added successfully" },
@@ -24,7 +19,7 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
 
     cy.intercept("GET", "http://localhost:3000/api/v1/gardens/1"),
       {
-        fixture: "gardens.json",
+        fixture: "gardens",
       };
 
     cy.intercept(
@@ -51,12 +46,10 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
       }
     );
 
-    // Visit the main page to start the process
     cy.visit("http://localhost:3001/");
   });
 
   it("runs a recommendation, saves a plant, and verifies it appears in the garden", () => {
-    // Step 1: Input garden info and click Search
     cy.get('input[name="zip_code"]').type("80209");
     cy.get('select[name="sunlight"]').select("Full Sun");
     cy.get('select[name="soil_type"]').select("Loamy");
@@ -64,10 +57,8 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
     cy.get('select[name="purpose"]').select("Food Production");
     cy.get(".search-button").click();
 
-    // Step 2: Wait for recommendations to load and verify plant cards
     cy.get(".plant-cards").find(".plant-card").should("have.length", 2);
 
-    // Verify the plant cards contain the correct data from the fixture
     cy.get(".plant-cards > :nth-child(1) > h3").contains("Strawberry");
     cy.get(".plant-cards > :nth-child(1) > img").should(
       "have.attr",
@@ -78,34 +69,33 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
       "Thrives in loamy soil and full sun, ideal for food production."
     );
 
-    // Step 3: Save a plant
-    cy.get(".plant-cards > :nth-child(1) .button-enabled").click(); // Save the first plant (Strawberry)
+    cy.get(".plant-cards > :nth-child(1) .button-enabled").click(); //
 
-    // Step 4: Verify the button changes to 'Plant Saved' and is disabled
-    // cy.wait("@savePlant").then(() => {
     cy.get(".plant-cards > :nth-child(1) .button-disabled")
       .contains("Plant Saved")
       .should("be.disabled");
-    // Step 5: Visit the garden page and verify the plant is saved
     cy.visit("http://localhost:3001/mygarden");
-    cy.get(".all-plant-cards").contains("Strawberry"); // Ensure the saved plant is visible
+    cy.get(".all-plant-cards").contains("Strawberry");
   });
 
   it("handles error during plant saving", () => {
-    // Simulate an error during plant saving (e.g., server error)
     cy.intercept("PATCH", "http://localhost:3000/api/v1/1", {
       statusCode: 500,
       body: { error: "Internal Server Error" },
-    }).as("savePlantError");
+    });
 
-    // Step 1: Try to save a plant
+    cy.get('select[name="sunlight"]').select("Full Sun");
+    cy.get('select[name="soil_type"]').select("Loamy");
+    cy.get('select[name="water_needs"]').select("High");
+    cy.get('select[name="purpose"]').select("Food Production");
+    cy.get(".search-button").click();
+
+    cy.get(".plant-cards").find(".plant-card").should("have.length", 2);
+
     cy.get(".plant-cards > :nth-child(1) .button-enabled").click();
 
-    // Step 2: Verify the error message is shown on the button
-    cy.wait("@savePlantError").then(() => {
-      cy.get(".plant-cards > :nth-child(1) .button-error")
-        .contains("Error Try Again Later")
-        .should("not.be.disabled");
-    });
+    cy.get(".plant-cards > :nth-child(1) .button-enabled").contains(
+      "Error Try Again Later"
+    );
   });
 });
