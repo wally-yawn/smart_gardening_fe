@@ -39,6 +39,7 @@ function SavePlant({ name, img_url, description, fetchGardenPlants }) {
     <div>
       <button
         disabled={buttonDisabled}
+        aria-labelledby={"Save Plant"}
         className={buttonDisabled ? "button-disabled" : "button-enabled"}
         onClick={handlePlant}
       >
