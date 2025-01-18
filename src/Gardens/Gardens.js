@@ -29,12 +29,24 @@ function Gardens({ gardens, fetchGardenPlants }) {
         }
       );
 
-      if (response.ok) {
-        setAllPlants(allPlants.filter((plant) => plant.id !== plantId));
-        fetchGardenPlants();
-      } else {
-        setError("Failed to delete plant. Please try again.");
+      if (!response.ok) {
+        let errorMessage = "Failed to delete plant. Please try again.";
+
+        try {
+          const errorData = await response.json();
+          if (errorData?.message) {
+            errorMessage = errorData.message;
+          }
+        } catch (parseError){
+          errorMessage = "An unexpected error occured. Please try again later.";
+        }      
+
+        setError(errorMessage);
+        return;
       }
+
+      setAllPlants(allPlants.filter((plant) => plant.id !== plantId));
+      fetchGardenPlants();
     } catch (error) {
       setError("Network error. Please check your connection.");
     } finally {
