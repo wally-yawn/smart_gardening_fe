@@ -101,7 +101,10 @@ function GardenInput({ gardenId, setRecommendations }) {
 
   const handleSaveOrEdit = async (event) => {
     event.preventDefault();
-
+    if (!isSearchEnabled) {
+      setError("Please complete all fields before saving or updating.")
+      return;
+    }
     try {
       const method = hasGarden ? "PATCH" : "POST";
       const saveUrl = hasGarden
