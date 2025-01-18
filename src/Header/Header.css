@@ -29,7 +29,7 @@
   padding: 10px 20px;
   font-size: 1rem;
   background-color: tan; 
-  color: white;
+  color:  #dde7c7;;
   cursor: pointer;
   display: flex;
   margin-right: center;
@@ -43,7 +43,6 @@
   background: transparent;
   width: 250px;
   height: 250px;
-  /* margin-right: auto; */
 }
 .home-btn:hover {
   background-color: #45a049;

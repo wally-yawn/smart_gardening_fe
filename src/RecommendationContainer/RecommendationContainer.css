@@ -37,21 +37,21 @@
 }
 
 .plant-cards > * {
-  flex: 1 1 calc(25% - 1em); /* Allows 4 cards per row, adjusts with spacing */
+  flex: 1 1 calc(25% - 1em); 
   max-width: calc(25% - 1em);
   min-width: 200px;
 }
 
 @media (max-width: 768px) {
   .plant-cards > * {
-    flex: 1 1 calc(50% - 1em); /* Adjusts to 2 cards per row on smaller screens */
+    flex: 1 1 calc(50% - 1em); 
     max-width: calc(50% - 1em);
   }
 }
 
 @media (max-width: 480px) {
   .plant-cards > * {
-    flex: 1 1 100%; /* Single column on very small screens */
+    flex: 1 1 100%; 
     max-width: 100%;
   }
 }
