@@ -25,12 +25,10 @@ h1 {
   margin-bottom: 20px;
   color:  #dde7c7;
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
-
-
 }
 
 input, select {
-  width: 48%;
+  width: 200px;
   padding: 10px;
   border: 2px solid #ccc;
   border-radius: 5px;
@@ -38,6 +36,7 @@ input, select {
   box-sizing: border-box;
   font-size: 1rem;
   color: #dde7c7;
+  margin-left: 10px;
 } 
 
 input:focus, select:focus {
@@ -50,6 +49,7 @@ label {
   font-size: 1.5em;
   margin-bottom: 5px;
   margin-top: 15px;
+  margin-left: 15px;
 }
 
 button {
