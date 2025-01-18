@@ -50,7 +50,7 @@ function App() {
           element={
             <>
               <Link to="/mygarden">
-                <button className="my-garden-button">My Garden</button>
+                <button className="my-garden-button"aria-labelledby="My Garden">My Garden</button>
               </Link>
               <GardenInput
                 key={"gardenInput"}
