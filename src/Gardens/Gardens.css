@@ -27,6 +27,7 @@
   border-radius: 8px;
   width: 100%;
   box-sizing: border-box;
+  color: rgb(190, 190, 177);
 }
 
 .all-plant-cards > * {
