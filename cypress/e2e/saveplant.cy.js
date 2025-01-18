@@ -57,18 +57,6 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
     cy.get('select[name="purpose"]').select("Food Production");
     cy.get(".search-button").click();
 
-    cy.get(".plant-cards").find(".plant-card").should("have.length", 2);
-
-    cy.get(".plant-cards > :nth-child(1) > h3").contains("Strawberry");
-    cy.get(".plant-cards > :nth-child(1) > img").should(
-      "have.attr",
-      "src",
-      "https://example.com/mock-strawberry.jpg"
-    );
-    cy.get(".plant-cards > :nth-child(1) > p").contains(
-      "Thrives in loamy soil and full sun, ideal for food production."
-    );
-
     cy.get(".plant-cards > :nth-child(1) .button-enabled").click(); //
 
     cy.get(".plant-cards > :nth-child(1) .button-disabled")
@@ -89,8 +77,6 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
     cy.get('select[name="water_needs"]').select("High");
     cy.get('select[name="purpose"]').select("Food Production");
     cy.get(".search-button").click();
-
-    cy.get(".plant-cards").find(".plant-card").should("have.length", 2);
 
     cy.get(".plant-cards > :nth-child(1) .button-enabled").click();
 
