@@ -35,7 +35,15 @@ describe("gardenPlantErrors", () => {
     cy.visit("http://localhost:3001");
   })
 
-it("display an error if fetching garden plants fails", () => {
+  it("display an error if fetching garden plants fails", () => {
+      cy.get("h2").contains("Oh no, something went wrong fetching your plants, try again in a few minutes")
+  })
+
+  it("display an error if fetching garden fails", () => {
+    cy.intercept("GET", "http://localhost:3000/api/v1/gardens/1", {
+      statusCode: 404,
+      fixture: '404_error'
+    });
     cy.get("h2").contains("Oh no, something went wrong fetching your plants, try again in a few minutes")
 })
 })
