@@ -33,10 +33,10 @@ function GardenInput({ gardenId, setRecommendations }) {
           });
           setHasGarden(true);
         } else {
-          console.error("Failed to fetch garden data", response.status);
+          throw new Error("Oh no, something went wrong fetching your garden, try again in a few minutes")
         }
       } catch (error) {
-        console.error("Failed to fetch garden data", error.message);
+        setError(error.message);
       }
     };
 
@@ -143,6 +143,7 @@ function GardenInput({ gardenId, setRecommendations }) {
       </span>
       <Tooltip id="my-tooltip" />
       <h1>Input Garden Info</h1>
+      {error && <h2>{error}</h2>}
       <form className="garden-form">
         <div className="form-row">
           <label>
