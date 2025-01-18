@@ -31,16 +31,14 @@ function Gardens({ gardens, fetchGardenPlants }) {
 
       if (!response.ok) {
         let errorMessage = "Failed to delete plant. Please try again.";
-
         try {
           const errorData = await response.json();
           if (errorData?.message) {
             errorMessage = errorData.message;
           }
-        } catch (parseError){
+        } catch (parseError) {
           errorMessage = "An unexpected error occured. Please try again later.";
-        }      
-
+        }
         setError(errorMessage);
         return;
       }
