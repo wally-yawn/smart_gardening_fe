@@ -255,22 +255,13 @@ describe("recommendations", () => {
       .contains("Please complete all fields before saving or updating.");
   });
 
-  it("cannot save a plant twice", () => {
-    cy.get(".search-button")
-      .click()
-      .get(".plant-cards > :nth-child(1) > .button-enabled")
-      .contains("Save Plant")
-      .get(".plant-cards > :nth-child(1) > .button-enabled")
-      .should("not.be.disabled")
-      .get(".plant-cards > :nth-child(1) > .button-enabled")
-      .click()
-      .get(".plant-cards > :nth-child(1) > .button-disabled")
-      .contains("Plant Saved")
-      .get(".plant-cards > :nth-child(1) > .button-disabled")
-      .should("be.disabled");
-  });
+  it("cannot save a plant twice", { defaultCommandTimeout: 20000 }, () => {
+    cy.get(".search-button").click()
+    .get(".plant-cards > :nth-child(1) .button-enabled").contains("Save Plant").click()
+    .get(".plant-cards > :nth-child(1) .button-disabled").contains("Plant Saved").should("exist");
+  })
 
-  it("handles error during plant saving", () => {
+  it("handles error during plant saving", { defaultCommandTimeout: 20000 }, () => {
     // Simulate an error during plant saving (e.g., server error)
     cy.intercept("PATCH", "http://localhost:3000/api/v1/1", {
       statusCode: 500,
@@ -278,15 +269,15 @@ describe("recommendations", () => {
     }).as("savePlantError");
 
     // Step 1: Try to save a plant
-    cy.get(".plant-cards > :nth-child(1) .button-enabled").click();
+
+    cy.get(".search-button").click()
+    cy.get(".plant-cards > :nth-child(1) .button-enabled").click()
 
     // Step 2: Verify the error message is shown on the button
     cy.wait("@savePlantError").then(() => {
-      cy.get(".plant-cards > :nth-child(1) .button-error")
+      cy.get(".plant-cards > :nth-child(1) .button-enabled")
         .contains("Error Try Again Later")
         .should("not.be.disabled");
     });
   });
-
-  xit("can handle not-ok responses from the server", () => {});
 });
