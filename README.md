@@ -1,3 +1,5 @@
+![Plantie](./readme_assets/Plantie.gif)
+
 # Smart Gardening
 
 ## Description
@@ -35,7 +37,8 @@ The planning, preparation, and development of this project were completed over t
 - **GitHub Project Board**: [Project Board](https://github.com/users/sethverrill/projects/5)
 
 ## App Demonstration
-![App Architecture Diagram](./architecture.png)
+![App Demo starting](./readme_assets/Demo_start.gif)
+![App Demo ending](./readme_assets/Demo_end.gif)
 
 ## Team Members
 #### Wally Wallace
