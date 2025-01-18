@@ -237,8 +237,8 @@ function GardenInput({ gardenId, setRecommendations }) {
             </select>
           </label>
         </div>
-        <button className='search-button' type="submit" onClick={searchRecommendations}>Search</button>
-        <button className='edit-save-button' type="button" onClick={handleSaveOrEdit}>{hasGarden ? "Update" : "Save"}</button>
+        <button className='search-button' aria-labelledby="Submit" type="submit" onClick={searchRecommendations}>Search</button>
+        <button className='edit-save-button' aria-labelledby="Save/Update" type="button" onClick={handleSaveOrEdit}>{hasGarden ? "Update" : "Save"}</button>
       </form>
       {error && <p className="error">{error}</p>}
       {successMessage && <p className="success">{successMessage}</p>}
