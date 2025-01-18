@@ -30,7 +30,7 @@ function Plants({
         />
       )}
       {deletePlant && (
-        <button aria-label="Delete plant" onClick={handleDelete}>
+        <button aria-labelledby="Delete plant" onClick={handleDelete}>
           Delete Plant
         </button>
       )}
