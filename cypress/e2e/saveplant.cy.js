@@ -83,5 +83,32 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
     cy.get(".plant-cards > :nth-child(1) .button-enabled").contains(
       "Error Try Again Later"
     );
+
+    cy.get(".error-message").contains(
+      "Failed to save plant, please try again."
+    );
+  });
+
+  it("handles network error during plant saving", () => {
+    cy.intercept("PATCH", "http://localhost:3000/api/v1/1", {
+      forceNetworkError: true,
+    });
+
+    cy.get('input[name="zip_code"]').clear().type("80209");
+    cy.get('select[name="sunlight"]').select("Full Sun");
+    cy.get('select[name="soil_type"]').select("Loamy");
+    cy.get('select[name="water_needs"]').select("High");
+    cy.get('select[name="purpose"]').select("Food Production");
+    cy.get(".search-button").click();
+
+    cy.get(".plant-cards > :nth-child(1) .button-enabled").click();
+
+    cy.get(".plant-cards > :nth-child(1) .button-enabled").contains(
+      "Network Error"
+    );
+
+    cy.get(".error-message").contains(
+      "Network error. Please check your connection."
+    );
   });
 });
