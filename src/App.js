@@ -14,6 +14,8 @@ function App() {
     plants: [],
   });
 
+  const [error, setError] = useState('');
+
   const [recommendations, setRecommendations] = useState({
     plants: [],
   });
@@ -28,10 +30,10 @@ function App() {
           plants: data.data,
         }));
       } else {
-        console.error("Failed to fetch your garden's plants");
+        throw new Error("Oh no, something went wrong fetching your plants, try again in a few minutes")
       }
     } catch (error) {
-      console.error("Error fetching plants", error);
+      setError(error.message)
     }
   };
 
@@ -54,6 +56,7 @@ function App() {
                 key={"gardenInput"}
                 setRecommendations={setRecommendations}
               />
+              {error && <h2>{error}</h2>}
               <RecommendationContainer
                 key={"recommendation-container"}
                 plantRecommendations={recommendations}
