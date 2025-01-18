@@ -17,10 +17,9 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
       body: { message: "Plant added successfully" },
     });
 
-    cy.intercept("GET", "http://localhost:3000/api/v1/gardens/1"),
-      {
-        fixture: "gardens",
-      };
+    cy.intercept("GET", "http://localhost:3000/api/v1/gardens/1", {
+      fixture: "gardens",
+    });
 
     cy.intercept(
       "GET",
@@ -50,7 +49,7 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
   });
 
   it("runs a recommendation, saves a plant, and verifies it appears in the garden", () => {
-    cy.get('input[name="zip_code"]').type("80209");
+    cy.get('input[name="zip_code"]').clear().type("80209");
     cy.get('select[name="sunlight"]').select("Full Sun");
     cy.get('select[name="soil_type"]').select("Loamy");
     cy.get('select[name="water_needs"]').select("High");
@@ -72,6 +71,7 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
       body: { error: "Internal Server Error" },
     });
 
+    cy.get('input[name="zip_code"]').clear().type("80209");
     cy.get('select[name="sunlight"]').select("Full Sun");
     cy.get('select[name="soil_type"]').select("Loamy");
     cy.get('select[name="water_needs"]').select("High");
