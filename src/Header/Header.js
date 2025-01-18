@@ -41,7 +41,7 @@ const Header = () => {
         
 
         {!isMainPage && (
-          <button onClick={goHome} className="home-btn">
+          <button onClick={goHome} className="home-btn"aria-labelledby="Home">
             Go Home
           </button>
         )}
