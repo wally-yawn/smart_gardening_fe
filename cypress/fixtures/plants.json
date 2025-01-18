@@ -1,13 +1,13 @@
 {
   "data": [
-      {
-          "id": 9,
-          "type": "plant",
-          "attributes": {
-              "name": "Strawberry",
-              "description": "Thrives in loamy soil and full sun, ideal for food production.",
-              "img_url": "https://example.com/mock-strawberry.jpg"
-          }
+    {
+      "id": 9,
+      "type": "plant",
+      "attributes": {
+        "name": "Strawberry",
+        "description": "Thrives in loamy soil and full sun, ideal for food production.",
+        "img_url": "https://example.com/mock-strawberry.jpg"
       }
+    }
   ]
 }
