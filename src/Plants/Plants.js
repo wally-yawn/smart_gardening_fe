@@ -29,7 +29,11 @@ function Plants({
           fetchGardenPlants={fetchGardenPlants}
         />
       )}
-      {deletePlant && <button onClick={handleDelete}>Delete Plant</button>}
+      {deletePlant && (
+        <button aria-label="Delete plant" onClick={handleDelete}>
+          Delete Plant
+        </button>
+      )}
     </div>
   );
 }
