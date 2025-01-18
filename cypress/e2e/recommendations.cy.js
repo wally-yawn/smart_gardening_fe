@@ -16,6 +16,21 @@ describe('recommendations', () => {
       fixture: 'recommendations_2'
     })
 
+    cy.intercept('GET', 'https://cdn.jsdelivr.net/npm/@lottiefiles/dotlottie-web@0.39.0/dist/dotlottie-player.wasm', {
+      fixture: 'lottie'
+    })
+
+    cy.intercept('GET', 'https://lottie.host/2d329e8e-3849-48e2-a940-4939e1314e4c/M1alAvpStN.lottie', {
+      fixture: 'lottie'
+    })
+
+    cy.intercept('GET', 'https://unpkg.com/@lottiefiles/dotlottie-web@0.39.0/dist/dotlottie-player.wasm', {
+      fixture: 'lottie'
+    })
+
+    cy.intercept('PATCH', 'http://localhost:3000/api/v1/1', {
+      fixture: 'gardens'
+    })
     cy.visit('http://localhost:3001/')
     })
 
@@ -98,9 +113,30 @@ describe('recommendations', () => {
   })
 
 
-  xit('cannot update if any fields are blank', () => {
+  it('cannot update if any fields are blank', () => {
     cy.get('input[name="zip_code"]').clear()
-    // this needs to handle in the front end
+    .get('.edit-save-button').click()
+    .get('.error').contains('Please complete all fields before saving or updating.')
+    .get('input[name="zip_code"]').type('80221')
+    .get('select[name="name"]').select('Select a Garden Name')
+    .get('.edit-save-button').click()
+    .get('.error').contains('Please complete all fields before saving or updating.')
+    .get('select[name="name"]').select('Mixed Garden')
+    .get('select[name="soil_type"]').select('Select Soil Type')
+    .get('.edit-save-button').click()
+    .get('.error').contains('Please complete all fields before saving or updating.')
+    .get('select[name="soil_type"]').select('Silty')
+    .get('select[name="sunlight"]').select('Select Sunlight')
+    .get('.edit-save-button').click()
+    .get('.error').contains('Please complete all fields before saving or updating.')
+    .get('select[name="sunlight"]').select('Shade')
+    .get('select[name="water_needs"]').select('Select Water Needs')
+    .get('.edit-save-button').click()
+    .get('.error').contains('Please complete all fields before saving or updating.')
+    .get('select[name="water_needs"]').select('Moderate')
+    .get('select[name="purpose"]').select('Select Purpose')
+    .get('.edit-save-button').click()
+    .get('.error').contains('Please complete all fields before saving or updating.')
   })
 
   it('cannot save a plant twice', () => {
