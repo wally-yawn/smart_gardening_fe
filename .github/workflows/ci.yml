@@ -18,22 +18,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Start React app
-        run: npm start &
-        env:
-          PORT: 3001
-
-      - name: Wait for app to be ready
-        uses: jakejarvis/wait-on-action@master
-        with:
-          url: http://localhost:3001
-          timeout: 60
-
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
           start: npm start
-          wait-on: http://localhost:3001
-          wait-on-timeout: 60
-        env:
-          PORT: 3001
+          wait-on: 'http://localhost:3000'
+          wait-on-timeout: 90
