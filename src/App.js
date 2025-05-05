@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import GardenInput from "./GardenInput/GardenInput";
 import Header from "./Header/Header";

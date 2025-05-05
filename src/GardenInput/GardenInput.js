@@ -1,6 +1,5 @@
 import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
-import BASE_URL from '../config/config';
 import config from '../config/config';
 import { Tooltip } from "react-tooltip";
 
