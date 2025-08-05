@@ -257,7 +257,7 @@ describe("recommendations", () => {
 
   it("cannot save a plant twice", { defaultCommandTimeout: 20000 }, () => {
     cy.get(".search-button").click()
-    .get(".plant-cards > :nth-child(1) .button-enabled").contains("Save Plant").click()
+    .get(".plant-cards > :nth-child(1) .button-enabled", {timeout: 15000}).contains("Save Plant").click()
     .get(".plant-cards > :nth-child(1) .button-disabled").contains("Plant Saved").should("exist");
   })
 
