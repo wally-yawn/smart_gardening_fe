@@ -40,6 +40,26 @@ The planning, preparation, and development of this project were completed over t
 ![App Demo starting](./readme_assets/Demo_start.gif)
 ![App Demo ending](./readme_assets/Demo_end.gif)
 
+## Project Setup (Cloning from GitHub)
+This project is built using Vite and React. To get started:
+
+1. Clone the repository: `git clone git@github.com:wally-yawn/smart_gardening_fe.git`
+2. cd your-repo-name
+3. Install dependencies: `npm install`
+4. Start the development server: `npm run dev`
+
+## Migrating from Create React App (CRA) to Vite
+If you're starting with a CRA project and want to migrate it to Vite, follow these steps:
+
+1. Remove CRA-specific packages
+`npm uninstall react-scripts`
+2. Install Vite 
+`npm install --save-dev vite`
+3. Install React plugin
+`npm install @vitejs/plugin-react`
+4. Install any other libraries
+`npm install`
+
 ## Team Members
 #### Wally Wallace
 - [LinkedIn Profile](https://www.linkedin.com/in/wally--wallace)
