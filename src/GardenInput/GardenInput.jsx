@@ -1,6 +1,6 @@
 import "./GardenInput.css";
 import React, { useState, useEffect } from "react";
-import config from '../config/config';
+import config from '../config/config.jsx';
 import { Tooltip } from "react-tooltip";
 
 function GardenInput({ gardenId, setRecommendations }) {

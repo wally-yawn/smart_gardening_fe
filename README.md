@@ -59,6 +59,7 @@ If you're starting with a CRA project and want to migrate it to Vite, follow the
 `npm install @vitejs/plugin-react`
 4. Install any other libraries
 `npm install`
+5. Note that to start the development server the command is now `npm run dev`
 
 ## Team Members
 #### Wally Wallace
