@@ -45,7 +45,7 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
       }
     );
 
-    cy.visit("http://localhost:3001/");
+    cy.visit("http://localhost:5173/");
   });
 
   it("runs a recommendation, saves a plant, and verifies it appears in the garden", () => {
@@ -61,7 +61,7 @@ describe("Garden Plant Saving Functionality with Recommendation", () => {
     cy.get(".plant-cards > :nth-child(1) .button-disabled")
       .contains("Plant Saved")
       .should("be.disabled");
-    cy.visit("http://localhost:3001/mygarden");
+    cy.visit("http://localhost:5173/mygarden");
     cy.get(".all-plant-cards").contains("Strawberry");
   });
 

@@ -49,7 +49,7 @@ This project is built using Vite and React. To get started:
 4. Start the development server: `npm run dev`
 
 ## Migrating from Create React App (CRA) to Vite
-If you're starting with a CRA project and want to migrate it to Vite, follow these steps:
+If you previously have set this project up as a CRA project you will need to follow these steps to migrate it to Vite:
 
 1. Remove CRA-specific packages
 `npm uninstall react-scripts`

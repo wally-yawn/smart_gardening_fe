@@ -32,7 +32,7 @@ describe("gardenPlantErrors", () => {
       fixture: "404_error",
     });
 
-    cy.visit("http://localhost:3001");
+    cy.visit("http://localhost:5173");
   })
 
   it("display an error if fetching garden plants fails", () => {

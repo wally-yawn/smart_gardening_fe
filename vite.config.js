@@ -17,5 +17,11 @@ export default defineConfig({
   ],
   resolve: {
     extensions: ['.js', '.jsx', '.json']
+  },
+
+  // 👇 Add this section
+  server: {
+    host: '0.0.0.0', // ensures Vite is accessible from all interfaces (not just localhost)
+    port: 5173       // explicitly sets the port for consistency
   }
 });
