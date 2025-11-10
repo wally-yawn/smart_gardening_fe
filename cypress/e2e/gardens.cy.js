@@ -14,7 +14,7 @@ describe("Gardens Page", () => {
       fixture: 'lottie'
     })
   
-    cy.visit("http://localhost:3001/mygarden");
+    cy.visit("http://localhost:5173/mygarden");
     cy.wait("@getPlants");
   });
 
@@ -27,7 +27,7 @@ describe("Gardens Page", () => {
 
     it("should show empty state when no plants exist", () => {
       cy.intercept("GET", "http://localhost:3000/api/v1/1/plants", { body: { plants: [] } }).as("emptyGarden");
-      cy.visit("http://localhost:3001/mygarden");
+      cy.visit("http://localhost:5173/mygarden");
       cy.wait("@emptyGarden");
       cy.get('[data-testid="empty-garden"]').should("be.visible").and("contain", "No Plants Saved Yet");
     });

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./Gardens.css";
 import Plants from "../Plants/Plants";
-import config from "../config/config";
+import config from '../config/config.jsx';
 
 function Gardens({ gardens, fetchGardenPlants }) {
   const [allPlants, setAllPlants] = useState(gardens?.plants || []);

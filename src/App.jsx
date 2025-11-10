@@ -5,7 +5,7 @@ import Gardens from "./Gardens/Gardens";
 import RecommendationContainer from "./RecommendationContainer/RecommendationContainer";
 import React, { useState, useEffect } from "react";
 import { Link, Routes, Route } from "react-router-dom";
-import config from "./config/config";
+import config from './config/config.jsx';
 
 function App() {
   const [myGardens, setMyGardens] = useState({

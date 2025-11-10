@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./SavePlant.css";
-import config from "../config/config";
+import config from '../config/config.jsx';
 
 function SavePlant({ name, img_url, description, fetchGardenPlants }) {
   const [buttonText, setButtonText] = useState("Save Plant");

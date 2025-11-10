@@ -29,7 +29,7 @@ describe("Header Component", () => {
       {
         fixture: "gardens",
       };
-    cy.visit("http://localhost:3001");
+    cy.visit("http://localhost:5173");
   });
 
   it("displays the welcome message on the main page", () => {
@@ -43,14 +43,14 @@ describe("Header Component", () => {
   });
 
   it("displays the page does not exist message", () => {
-    cy.visit("http://localhost:3001/test", { failOnStatusCode: false });
+    cy.visit("http://localhost:5173/test", { failOnStatusCode: false });
 
     cy.get("h1").contains("Oops! This page doesn’t exist. 🌱");
   });
 
   it("displays the home button on non-main pages and navigates back home", () => {
-    cy.visit("http://localhost:3001/mygarden");
+    cy.visit("http://localhost:5173/mygarden");
     cy.get(".home-btn").should("exist").click();
-    cy.url().should("eq", "http://localhost:3001/");
+    cy.url().should("eq", "http://localhost:5173/");
   });
 });

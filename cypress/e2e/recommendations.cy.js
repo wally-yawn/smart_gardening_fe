@@ -51,7 +51,7 @@ describe("recommendations", () => {
     cy.intercept("PATCH", "http://localhost:3000/api/v1/1", {
       fixture: "gardens",
     });
-    cy.visit("http://localhost:3001/");
+    cy.visit("http://localhost:5173/");
   });
 
   it("shows the main page before a search has not been completed with a default garden", () => {

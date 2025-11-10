@@ -22,7 +22,7 @@ describe("tool tip test", () => {
   })
 
   it("should display the tool tip on hover", () => {
-    cy.visit("http://localhost:3001/");
+    cy.visit("http://localhost:5173/");
     cy.get(".info-icon").trigger("mouseover");
     cy.get("#my-tooltip")
       .should("be.visible")
